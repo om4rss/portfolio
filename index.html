@@ -29,7 +29,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Omar Sherif - Computer Science student focusing on systems, networking, and digital ecosystems.">
-    <title>Omar | Systems & Digital Ecosystems</title>
+    <title>Omar's Portfolio</title>
     
     <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
@@ -128,7 +128,7 @@
             font-size: 0.7rem; color: var(--text-muted); font-weight: 600;
         }
 
-        /* Apple Glass Segmented Dock Navigation with Animated Glider Pill */
+        /* Apple Glass Segmented Dock Navigation */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateZ(0);
             z-index: 2000; width: max-content;
@@ -476,13 +476,13 @@
         <div class="bg-glow-orb orb-2"></div>
     </div>
 
-    <!-- Top Left Floating Ayah Pill Notification -->
+    <!-- Top Left Floating Ayah Pill Notification (Clickable Link) -->
     <div class="ayah-pill-container">
-        <div class="ayah-pill">
+        <a href="https://quran.com/al-qamar/10-55" target="_blank" rel="noopener" class="ayah-pill">
             <span class="ayah-tag"><i class="fa-solid fa-star" style="font-size: 0.55rem;"></i> Ayah</span>
             <span class="arabic-text">فَدَعَا رَبَّهُ أَنِّي مَغْلُوبٌ فَانْتَصِرْ</span>
             <span class="ayah-ref">[54:10]</span>
-        </div>
+        </a>
     </div>
 
     <!-- Route Switcher -->
@@ -877,6 +877,32 @@
             filterIndicator.style.width = `${activeBtn.offsetWidth}px`;
         }
 
+        function refreshAllGliders() {
+            const activeNav = document.querySelector('.nav-dock a.active');
+            if (activeNav) updateNavGlider(activeNav);
+            
+            const activeFilter = document.querySelector('.filter-btn.active');
+            if (activeFilter) updateFilterGlider(activeFilter);
+        }
+
+        // Initialize Gliders on Load & Font Load
+        refreshAllGliders();
+        requestAnimationFrame(refreshAllGliders);
+        window.addEventListener('load', refreshAllGliders);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(refreshAllGliders);
+        }
+
+        // ResizeObserver on Nav and Filter Container
+        if (window.ResizeObserver) {
+            const navDock = document.querySelector('.nav-dock');
+            if (navDock) new ResizeObserver(refreshAllGliders).observe(navDock);
+
+            const filterBar = document.querySelector('.cert-filter-bar');
+            if (filterBar) new ResizeObserver(refreshAllGliders).observe(filterBar);
+        }
+
         // Click Override Lock for Nav Items
         let isNavClickScrolling = false;
         let navClickTimeout = null;
@@ -896,7 +922,7 @@
             });
         });
 
-        // Smooth Scrollspy Nav Engine with Bottom Page Contact Override
+        // Smooth Scrollspy Nav Engine
         const sections = document.querySelectorAll('section[id]');
 
         function activateNavOnScroll() {
@@ -930,10 +956,6 @@
             }
         }
         window.addEventListener('scroll', activateNavOnScroll, { passive: true });
-
-        // Initialize Nav Glider
-        const currentNavActive = document.querySelector('.nav-dock a.active');
-        if (currentNavActive) updateNavGlider(currentNavActive);
 
         // Idle-Proof Mouse Tracker & 3D Glass Tilt Engine
         let ticking = false;
@@ -998,16 +1020,8 @@
         }
 
         sortCertsByCompany();
-        const initialFilterActive = document.querySelector('.filter-btn.active');
-        if (initialFilterActive) updateFilterGlider(initialFilterActive);
 
-        window.addEventListener('resize', () => {
-            const activeNav = document.querySelector('.nav-dock a.active');
-            if (activeNav) updateNavGlider(activeNav);
-            
-            const activeFilter = document.querySelector('.filter-btn.active');
-            if (activeFilter) updateFilterGlider(activeFilter);
-        }, { passive: true });
+        window.addEventListener('resize', refreshAllGliders, { passive: true });
 
         let filterTimeout = null;
         filterBtns.forEach(btn => {
@@ -1021,7 +1035,6 @@
                 const filter = btn.getAttribute('data-filter');
                 if (filterTimeout) clearTimeout(filterTimeout);
 
-                // Phase 1: Fluid micro cross-fade out unselected
                 certCards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     const isMatch = (filter === 'all' || category === filter);
@@ -1030,7 +1043,6 @@
                     }
                 });
 
-                // Phase 2: Collapse & scale up matching cards
                 filterTimeout = setTimeout(() => {
                     if (filter === 'all') {
                         sortCertsByCompany();
@@ -1045,7 +1057,7 @@
                         if (isMatch) {
                             card.classList.remove('hidden');
                             card.classList.add('filtering-in');
-                            void card.offsetWidth; // Force reflow
+                            void card.offsetWidth;
                             card.classList.remove('filtering-in');
                         } else {
                             card.classList.add('hidden');
