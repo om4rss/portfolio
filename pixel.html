@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        const injectTracking = function() {
+          if (window.gtagInitialized) return;
+          window.gtagInitialized = true;
+          
+          window.removeEventListener('pointerdown', injectTracking);
+          window.removeEventListener('scroll', injectTracking);
+          window.removeEventListener('mousemove', injectTracking);
+
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX";
+          document.head.appendChild(script);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        };
+        window.addEventListener('pointerdown', injectTracking, { passive: true });
+        window.addEventListener('scroll', injectTracking, { passive: true });
+        window.addEventListener('mousemove', injectTracking, { passive: true });
+      });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Omar Sherif - Computer Science student at ACU focusing on digital ecosystems.">
+    <title>Omar | Portfolio</title>
+    
+    <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+
+    <style>
+        /* Precision System Design Variables Mapping */
+        :root, [data-theme="light"] {
+            --bg-color: #e8eff7;
+            --panel-bg: #ffffff;
+            --border-color: #000000;
+            --text-main: #030303;
+            --text-muted: #495057;
+            --accent-red: #ED1C24; /* High-Performance AMD Red */
+            --container-width: 1100px;
+            --shadow-color: rgba(0, 0, 0, 0.16);
+            --ease-fluid: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000; /* Deep Pitch Black */
+            --panel-bg: #0c0c0c; /* Dark Obsidian */
+            --border-color: #ffffff;
+            --text-main: #ffffff;
+            --text-muted: #adb5bd;
+            --shadow-color: rgba(237, 28, 36, 0.25); /* AMD Red Underglow Matrix */
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            scroll-behavior: smooth;
+        }
+
+        /* Precision Retro Pointer Capture Matrix */
+        body, html, a, button, .skill-tag, .social-icon, .stack-nav-btn, #theme-toggle-btn, .glass-version-btn {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M0,0 L0,22 L6,16 L12,26 L16,24 L10,14 L18,14 Z" fill="black" stroke="white" stroke-width="2" stroke-linejoin="miter" image-rendering="pixelated"/></svg>'), auto !important;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1.15rem;
+            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid);
+        }
+
+        /* Fluid Layer Geometry Background Clouds */
+        .liquid-bg { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            z-index: -3; overflow: hidden; pointer-events: none;
+        }
+        .pixel-cloud {
+            position: absolute; background: var(--panel-bg); opacity: 0.2;
+            box-shadow: 0 8px 0 var(--panel-bg), 8px 0 0 var(--panel-bg), -8px 0 0 var(--panel-bg), 0 -8px 0 var(--panel-bg),
+                        16px 8px 0 var(--panel-bg), -16px 8px 0 var(--panel-bg), 8px 16px 0 var(--panel-bg), -8px 16px 0 var(--panel-bg);
+            animation: cloud-drift 80s infinite linear;
+            transition: background-color 0.4s var(--ease-fluid);
+        }
+        .blob-1 { top: 15%; left: 5%; transform: scale(1.3); }
+        .blob-2 { bottom: 20%; right: 10%; transform: scale(2); animation-delay: -30s; }
+        @keyframes cloud-drift {
+            0% { transform: translate3d(-250px, 0, 0); }
+            100% { transform: translate3d(calc(100vw + 250px), 0, 0); }
+        }
+
+        /* Unique Minimalist Underline HUD Navigation Bar Layout */
+        nav { position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateZ(0); z-index: 2000; width: max-content; }
+        .nav-panel { 
+            background: var(--panel-bg); 
+            border: 4px solid var(--border-color);
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            padding: 4px 12px; 
+            display: flex; align-items: center;
+            transition: background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+        }
+        .nav-links { display: flex; gap: 4px; align-items: center; }
+        .nav-links a { 
+            color: var(--text-muted); text-decoration: none; font-family: 'Press Start 2P', monospace; font-size: 0.65rem; padding: 12px 16px; display: flex; align-items: center; gap: 8px; position: relative;
+            transition: color 0.2s var(--ease-fluid);
+        }
+        
+        /* Unique Minimal Accent Line Selector Track */
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 2px; left: 16px; right: 16px; height: 4px; background: transparent; transition: background-color 0.2s var(--ease-fluid);
+        }
+        .nav-links a:hover, .nav-links a.active { 
+            color: var(--accent-red);
+        }
+        .nav-links a:hover::after, .nav-links a.active::after {
+            background: var(--accent-red);
+        }
+        
+        .nav-icon-wrapper { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; }
+        .nav-links a i { font-size: 0.8rem; }
+        
+        .nav-notion-icon { width: 14px !important; height: 14px !important; object-fit: contain; filter: grayscale(1) contrast(1.5); transition: filter 0.25s var(--ease-fluid); }
+        [data-theme="dark"] .nav-notion-icon { filter: brightness(0.7); }
+        .nav-links a.active .nav-notion-icon, .nav-links a:hover .nav-notion-icon { filter: none !important; }
+
+        /* Control Switch Box Module Far Right Layout Placement */
+        .theme-toggle-container {
+            position: fixed; top: 24px; right: 40px; z-index: 2500;
+            display: flex; gap: 16px; align-items: center;
+        }
+        .crescent-toggle, .glass-version-btn {
+            background: var(--panel-bg); 
+            border: 4px solid var(--border-color);
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            display: flex; align-items: center; justify-content: center; 
+            width: 52px; height: 52px; padding: 0; outline: none; text-decoration: none;
+            transition: transform 0.4s var(--ease-bounce), background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid);
+        }
+        
+        /* Symmetrical Interactive Motions */
+        .crescent-toggle:hover { transform: translateY(-4px) scale(1.1) rotate(15deg); border-color: var(--accent-red); box-shadow: 8px 8px 0px var(--accent-red); }
+        .glass-version-btn:hover { transform: translateY(-4px) scale(1.1) rotate(-15deg); border-color: var(--accent-red); box-shadow: 8px 8px 0px var(--accent-red); color: var(--accent-red); }
+        .crescent-toggle:active, .glass-version-btn:active { transform: scale(0.9); }
+        
+        .glass-version-btn i {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            transition: color 0.4s var(--ease-fluid);
+        }
+        .glass-version-btn:hover i { color: var(--accent-red); }
+        
+        /* Centered Geometric Moon SVG Element Vectors */
+        .moon-svg {
+            width: 24px; height: 24px; display: block;
+            fill: var(--border-color);
+            transition: fill 0.4s var(--ease-fluid);
+        }
+        [data-theme="dark"] .moon-svg {
+            fill: var(--accent-red);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Press Start 2P', monospace; text-transform: uppercase; letter-spacing: -0.03em; }
+        p { color: var(--text-muted); transition: color 0.4s var(--ease-fluid); }
+
+        /* Container Formatting Nodes - Recalibrated for Optimal Viewport Alignment */
+        section { 
+            padding: 3.5rem 2rem 3.5rem 2rem; 
+            max-width: var(--container-width); 
+            margin: 0 auto; 
+            scroll-margin-top: 96px; 
+            position: relative; 
+            z-index: 1; 
+            content-visibility: auto; 
+            contain-intrinsic-size: 1px 600px; 
+        }
+        h2 { font-size: 1.5rem; margin-bottom: 2.5rem; text-align: center; color: var(--text-main); transition: color 0.4s var(--ease-fluid); }
+        h2::after { content: ''; display: block; width: 60px; height: 6px; background: var(--accent-red); margin: 14px auto 0 auto; transition: background-color 0.4s var(--ease-fluid); }
+
+        /* Hero Element Assemblies */
+        .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; content-visibility: visible; }
+        .avatar-wrapper { position: relative; width: 140px; height: 140px; margin-bottom: 2rem; }
+        .hero-avatar { width: 140px; height: 140px; border: 4px solid var(--border-color); object-fit: cover; position: relative; z-index: 2; box-shadow: 6px 6px 0px var(--shadow-color); transition: border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid); }
+        .avatar-glow { position: absolute; top: 6px; left: 6px; width: 140px; height: 140px; background: var(--accent-red); z-index: 1; transition: background-color 0.4s var(--ease-fluid); }
+        
+        .hero h1 { font-size: 2.4rem; line-height: 1.2; margin-bottom: 1.5rem; min-height: 1.2em; display: flex; align-items: center; justify-content: center; width: 100%; color: var(--text-main); transition: color 0.4s var(--ease-fluid); }
+        .hero p { max-width: 700px; margin-bottom: 2rem; font-size: 1.3rem; }
+
+        #typewriter::after { content: '_'; animation: blink 0.6s infinite steps(2, start); color: var(--accent-red); }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-btns { display: flex; gap: 1rem; }
+        .btn { padding: 14px 28px; font-family: 'Press Start 2P', monospace; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; border: 4px solid var(--border-color); box-shadow: 6px 6px 0px var(--shadow-color); transition: transform 0.2s var(--ease-fluid), box-shadow 0.2s var(--ease-fluid), background-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid); }
+        .btn:hover { transform: translateY(-4px); box-shadow: 10px 10px 0px var(--shadow-color); }
+        .btn:active { transform: translate(2px, 2px); box-shadow: 4px 4px 0px var(--shadow-color); }
+        .btn-primary { background: var(--border-color); color: var(--panel-bg); }
+        .btn-primary:hover { background: var(--accent-red); color: #ffffff; border-color: var(--border-color); }
+        .btn-glass { background: var(--panel-bg); color: var(--text-main); }
+        .btn-glass:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+        /* Premium Modular Panels Layout Box Structures */
+        .glass-panel { 
+            background: var(--panel-bg); 
+            border: 4px solid var(--border-color); 
+            box-shadow: 8px 8px 0px var(--shadow-color);
+            transition: background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid), transform 0.3s var(--ease-bounce);
+            position: relative; overflow: hidden;
+        }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .about-card, .stat-card { padding: 2.5rem; }
+        .about-card h2 { text-align: left; }
+        .about-card h2::after { margin: 14px 0 0 0; }
+        .stat-card h3 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-main); transition: color 0.4s var(--ease-fluid); }
+
+        /* Anti-Wrap & Layout Shift Isolated Micro Geometry Rules for Skills */
+        .skills-container { display: flex; flex-direction: column; gap: 14px; margin-top: 1.5rem; }
+        .skills-row { display: flex; flex-wrap: wrap; gap: 12px; }
+        .skill-tag { 
+            padding: 8px 16px; 
+            border: 2px solid var(--border-color); 
+            background: var(--bg-color); 
+            font-size: 1.1rem; 
+            color: var(--text-main); 
+            display: inline-flex; 
+            align-items: center; 
+            white-space: nowrap; 
+            transition: background-color 0.3s var(--ease-fluid), transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease-fluid), border-color 0.3s var(--ease-fluid); 
+        }
+        
+        /* Locked Size footprints completely killing layout wrapping flickering bugs */
+        .icon-reveal { 
+            display: inline-block; 
+            width: 24px; 
+            opacity: 0; 
+            transform: scale(0);
+            margin-right: -24px; 
+            transition: transform 0.25s var(--ease-bounce), opacity 0.2s var(--ease-fluid), margin 0.25s var(--ease-bounce); 
+            overflow: hidden; height: 18px; vertical-align: middle; 
+        }
+        
+        .skill-tag img { 
+            width: 18px; height: 18px; display: inline-block; vertical-align: top;
+            filter: brightness(0) !important; 
+            transition: filter 0.3s var(--ease-fluid); 
+        }
+        [data-theme="dark"] .skill-tag img { 
+            filter: invert(1) brightness(5) !important; 
+        }
+        
+        .skill-tag:hover .icon-reveal { opacity: 1; transform: scale(1); margin-right: 4px; }
+        .skill-tag:hover { background: var(--panel-bg); border-color: var(--accent-red); transform: translateY(-4px); box-shadow: 4px 4px 0px var(--accent-red); }
+
+        /* Spatially Balanced Carousel Matrix Frames Layout */
+        .stack-area { position: relative; min-height: 580px; width: 100%; display: flex; justify-content: center; align-items: center; }
+        .stack-container { position: relative; width: 100%; max-width: 900px; height: 550px; touch-action: pan-y; }
+        .card-slot { position: absolute !important; width: 100%; height: 100%; top: 0; left: 0; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s var(--ease-fluid); }
+        .stacked-card { width: calc(100% - 140px); height: 100%; padding: 1.5rem 2.5rem 2.5rem 2.5rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: flex-start; }
+        
+        .card-slot.pos-0 { transform: translate3d(0, 0, 0) scale(1); z-index: 100; opacity: 1; }
+        .card-slot.pos-1 { transform: translate3d(60px, 20px, 0) scale(0.96); z-index: 50; opacity: 0.85; }
+        .card-slot.pos-2 { transform: translate3d(120px, 40px, 0) scale(0.92); z-index: 10; opacity: 0.6; }
+        
+        .stack-nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background: var(--panel-bg); border: 4px solid var(--border-color);
+            color: var(--text-main); font-size: 1rem; display: flex; align-items: center; justify-content: center; z-index: 200;
+            box-shadow: 4px 4px 0px var(--shadow-color);
+            transition: transform 0.2s var(--ease-fluid), box-shadow 0.2s var(--ease-fluid), background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid);
+        }
+        .stack-nav-btn:hover { background: var(--accent-red); color: #ffffff; border-color: var(--border-color); transform: translateY(-50%) scale(1.1); }
+        .stack-nav-btn:active { transform: translateY(-50%) translate(2px, 2px); box-shadow: 2px 2px 0px var(--shadow-color); }
+        .stack-nav-left { left: -10px; }
+        .stack-nav-right { right: -10px; }
+        
+        /* Precision Geometric Recalibration specs for cards layout */
+        .popular-badge { 
+            font-family: 'Press Start 2P', monospace; 
+            font-size: 0.55rem; 
+            background: var(--text-main); 
+            border: 2px solid var(--border-color); 
+            color: var(--panel-bg); 
+            padding: 6px 12px; 
+            width: fit-content; 
+            margin-bottom: 0.5rem; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            transform: translateY(-4px);
+            transition: background-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid);
+        }
+        .card-img { width: 100%; height: 285px; object-fit: cover; border: 4px solid var(--border-color); margin-bottom: 0px; aspect-ratio: 400/210; contain: paint; transition: border-color 0.4s var(--ease-fluid); }
+        .stacked-card:hover .card-img { border-color: var(--accent-red); }
+        
+        .stacked-card h3 { margin-top: 1.8rem; margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--text-main); }
+        .stacked-card p { font-size: 1.05rem; }
+
+        /* Achievements / Verification Certificate Cards Grid Matrices */
+        .certs-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 1rem; align-items: stretch; }
+        .cert-card { display: flex; align-items: center; gap: 1.2rem; padding: 1.5rem; text-decoration: none; color: inherit; height: 100%; min-height: 100px; }
+        .cert-card:hover { transform: translateY(-4px); box-shadow: 10px 10px 0px var(--accent-red); background: var(--bg-color); border-color: var(--border-color); }
+        .cert-icon { width: 44px; height: 44px; border: 3px solid var(--border-color); background: var(--bg-color); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; color: var(--text-main); transition: background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid); }
+        .cert-card:hover .cert-icon { background: var(--panel-bg); color: var(--accent-red); border-color: var(--accent-red); }
+        .cert-info { display: flex; flex-direction: column; justify-content: center; }
+        .cert-info h4 { font-size: 0.75rem; line-height: 1.3; margin-bottom: 4px; color: var(--text-main); transition: color 0.4s var(--ease-fluid); }
+        .cert-info p { font-size: 1rem; }
+
+        /* Communication Hub Node Format Frameworks */
+        .contact-box { text-align: center; padding: 4rem 2rem; max-width: 800px; margin: 0 auto; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .social-icon { width: 60px; height: 60px; border: 4px solid var(--border-color); background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 1.4rem; text-decoration: none; box-shadow: 4px 4px 0px var(--shadow-color); transition: all 0.3s var(--ease-bounce); }
+        .social-icon:hover { background: var(--accent-red); color: #ffffff; border-color: var(--border-color); transform: translateY(-6px) scale(1.1); box-shadow: 6px 6px 0px var(--border-color); }
+
+        /* Responsive Adaptive Screen Layout Geometries */
+        @media (max-width: 900px) {
+            .nav-links span { display: none; }
+            .theme-toggle-container { top: auto; bottom: 20px; right: 20px; }
+            .hero h1 { font-size: 1.6rem; }
+            .stacked-card { width: 100%; padding: 1.5rem; }
+            .card-slot.pos-1, .card-slot.pos-2 { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            section { padding: 4rem 1.5rem 2rem 1.5rem; }
+            .stack-nav-btn { display: none; }
+            .nav-links a::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="liquid-bg">
+        <div class="pixel-cloud blob-1"></div>
+        <div class="pixel-cloud blob-2"></div>
+    </div>
+
+    <div class="theme-toggle-container">
+        <a href="https://om4r.pages.dev/" class="glass-version-btn" aria-label="View Liquid Glass Version" title="Liquid Glass Version">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </a>
+        <button class="crescent-toggle" id="theme-toggle-btn" aria-label="Toggle Palette Mode">
+            <svg class="moon-svg" viewBox="0 0 16 16">
+                <path d="M6 2h4v1h2v1h1v2h1v4h-1v2h-1v1h-2v1H6v-1H4v-1H3v-2H2V6h1V4h1V3h2V2zm3 2H8v8h1v-1h1v-1h1V6h-1V5H9V4z"/>
+            </svg>
+        </button>
+    </div>
+
+    <nav aria-label="Main Navigation">
+        <div class="nav-panel">
+            <div class="nav-links">
+                <a href="#home" class="nav-item active" aria-label="Home"><div class="nav-icon-wrapper"><i class="fa-solid fa-house"></i></div><span>Home</span></a>
+                <a href="#about" class="nav-item" aria-label="About"><div class="nav-icon-wrapper"><i class="fa-solid fa-circle-user"></i></div><span>About</span></a>
+                <a href="#projects" class="nav-item" aria-label="Notion Projects"><div class="nav-icon-wrapper"><img src="https://cdn.simpleicons.org/notion/black" id="nav-notion-img" class="nav-notion-icon" alt="Notion Icon" width="18" height="18" decoding="async"></div><span>Notion</span></a>
+                <a href="#certs" class="nav-item" aria-label="Skills and Certs"><div class="nav-icon-wrapper"><i class="fa-solid fa-award"></i></div><span>Skills</span></a>
+                <a href="#contact" class="nav-item" aria-label="Contact"><div class="nav-icon-wrapper"><i class="fa-solid fa-paper-plane"></i></div><span>Contact</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="avatar-wrapper">
+                <div class="avatar-glow"></div>
+                <picture>
+                    <source srcset="omar.webp" type="image/webp">
+                    <img src="omar.webp" alt="Omar Sherif" class="hero-avatar" width="140" height="140" fetchpriority="high" decoding="async">
+                </picture>
+            </div>
+            <h1><span id="typewriter"></span></h1>
+            <p>Computer Science student @ ACU.<br>Building fluid digital ecosystems and productivity systems.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View Content</a>
+                <a href="#contact" class="btn btn-glass">Get in Touch</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-grid">
+                <div class="glass-panel about-card">
+                    <h2>Who I Am</h2>
+                    <p>I'm a CS student with a passion for optimizing workflows. I believe technology should simplify life. My work bridges the gap between code and intuitive productivity systems.</p>
+                </div>
+                <div class="glass-panel stat-card">
+                    <h3>Tech Stack</h3>
+                    <div class="skills-container">
+                        <div class="skills-row">
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:c.svg" alt="C" width="18" height="18" loading="lazy" decoding="async"></span> C</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:cplusplus.svg" alt="C++" width="18" height="18" loading="lazy" decoding="async"></span> C++</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:python.svg" alt="Python" width="18" height="18" loading="lazy" decoding="async"></span> Python</div>
+                        </div>
+                        <div class="skills-row">
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobepremierepro.svg" alt="Premiere" width="18" height="18" loading="lazy" decoding="async"></span> Premiere Pro</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobephotoshop.svg" alt="Photoshop" width="18" height="18" loading="lazy" decoding="async"></span> Photoshop</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobeillustrator.svg" alt="Illustrator" width="18" height="18" loading="lazy" decoding="async"></span> Illustrator</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:davinciresolve.svg" alt="Resolve" width="18" height="18" loading="lazy" decoding="async"></span> DaVinci Resolve</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:figma.svg" alt="Figma" width="18" height="18" loading="lazy" decoding="async"></span> Figma</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:blender.svg" alt="Blender" width="18" height="18" loading="lazy" decoding="async"></span> Blender</div>
+                        </div>
+                        <div class="skills-row">
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:visualstudiocode.svg" alt="VSCode" width="18" height="18" loading="lazy" decoding="async"></span> VS Code</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:clion.svg" alt="CLion" width="18" height="18" loading="lazy" decoding="async"></span> CLion</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:pycharm.svg" alt="PyCharm" width="18" height="18" loading="lazy" decoding="async"></span> PyCharm</div>
+                        </div>
+                        <div class="skills-row">
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:git.svg" alt="Git" width="18" height="18" loading="lazy" decoding="async"></span> Git</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:github.svg" alt="GitHub" width="18" height="18" loading="lazy" decoding="async"></span> GitHub</div>
+                        </div>
+                        <div class="skills-row">
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:docker.svg" alt="Docker" width="18" height="18" loading="lazy" decoding="async"></span> Docker</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:linux.svg" alt="Linux" width="18" height="18" loading="lazy" decoding="async"></span> Linux</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:notion.svg" alt="Notion" width="18" height="18" loading="lazy" decoding="async"></span> Notion</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Notion Ecosystem</h2>
+            <div class="stack-area">
+                <button class="stack-nav-btn stack-nav-left" id="prev-btn" aria-label="Previous Template"><i class="fas fa-chevron-left"></i></button>
+                <div class="stack-container" id="project-stack">
+                    <div class="card-slot pos-0">
+                        <div class="glass-panel stacked-card">
+                            <div>
+                                <span class="popular-badge">Flagship</span>
+                                <picture>
+                                    <source srcset="minimal.webp" type="image/webp">
+                                    <img src="minimal.webp" alt="Minimal Second Brain" class="card-img" width="400" height="210" loading="lazy" decoding="async">
+                                </picture>
+                                <h3>Minimal Second Brain</h3>
+                                <p>Organize your life flawlessly in Notion.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-slot pos-1">
+                        <div class="glass-panel stacked-card">
+                            <div>
+                                <span class="popular-badge">Most Popular</span>
+                                <picture>
+                                    <source srcset="simple.webp" type="image/webp">
+                                    <img src="simple.webp" alt="Simple Habit Tracker" class="card-img" width="400" height="210" loading="lazy" decoding="async">
+                                </picture>
+                                <h3>Simple Habit Tracker</h3>
+                                <p>Maintain daily consistency seamlessly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-slot pos-2">
+                        <div class="glass-panel stacked-card">
+                            <div>
+                                <div style="margin-bottom: 0.8rem; width:54px; height:54px; background:var(--bg-color); border:3px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:1.4rem; transition: background-color 0.4s var(--ease-fluid), border-color 0.4s var(--ease-fluid);"><i class="fas fa-cube"></i></div>
+                                <h3>Browse Store</h3>
+                                <p>Explore the full collection of academic workspaces.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="stack-nav-btn stack-nav-right" id="next-btn" aria-label="Next Template"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="certs">
+            <h2>Verified Skills</h2>
+            <div class="certs-container">
+                <a href="https://www.hackerrank.com/certificates/89f4c8e0456d" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
+                    <div class="cert-info"><h4>Python (Basic)</h4><p>HackerRank</p></div>
+                </a>
+                <a href="https://cert.efset.org/en/FSfjU3" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-language"></i></div>
+                    <div class="cert-info"><h4>EF SET 78/100 (C2 Proficient)</h4><p>EF SET</p></div>
+                </a>
+                <a href="certificate.html" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-server"></i></div>
+                    <div class="cert-info"><h4>Administer AD DS</h4><p>Microsoft Applied Skills</p></div>
+                </a>
+                <a href="https://www.credly.com/earner/earned/badge/48fcc13c-fc09-4a24-9d79-f3630b23a173" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="cert-info"><h4>Endpoint Security</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/d2dae157-4291-4d9b-90f5-77e2727bbef2/public_url" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="cert-info"><h4>Networking Devices & Config</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="cert-info"><h4>Operating Systems Basics</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/1c25a57d-ee63-4607-9ed8-e4c1d209c5c4/public_url" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="cert-info"><h4>Computer Hardware Basics</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/ea95911d-8a0f-439f-ab19-a15cbe9d4ccc/public_url" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="cert-info"><h4>Introduction to Cybersecurity</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/8500fb4b-3d21-4def-a6a6-7756efa7a85a/public_url" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-wifi"></i></div>
+                    <div class="cert-info"><h4>Introduction to IoT</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://www.credly.com/badges/a30c7ec2-d20d-4214-9685-ce94268993f5/public_url" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                    <div class="cert-info"><h4>Introduction to Modern AI</h4><p>Cisco Academy</p></div>
+                </a>
+                <a href="https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b#_" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-database"></i></div>
+                    <div class="cert-info"><h4>Accelerating DL with GPUs</h4><p>IBM | Cognitive Class</p></div>
+                </a>
+                <a href="itibm.pdf" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-laptop"></i></div>
+                    <div class="cert-info"><h4>IT Fundamentals</h4><p>IBM</p></div>
+                </a>
+                <a href="https://verify.skilljar.com/c/r448pjhf3cb8" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-cube"></i></div>
+                    <div class="cert-info"><h4>Notion Essentials</h4><p>Notion Academy</p></div>
+                </a>
+                <a href="https://verify.skilljar.com/c/ixzcha7b5vuw" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-sync"></i></div>
+                    <div class="cert-info"><h4>Notion Workflows</h4><p>Notion Academy</p></div>
+                </a>
+                <a href="https://verify.skilljar.com/c/5a38h8bb583z" target="_blank" class="glass-panel cert-card">
+                    <div class="cert-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="cert-info"><h4>Notion Advanced</h4><p>Notion Academy</p></div>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="glass-panel contact-box">
+                <h2>Let's Connect</h2>
+                <div class="social-links">
+                    <a href="mailto:contact@omardoestech.com" class="social-icon" aria-label="Email Omar"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/om4rs/" class="social-icon" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://buymeacoffee.com/imomar" class="social-icon" aria-label="Buy Omar a coffee"><i class="fas fa-coffee"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p style="text-align: center; color: var(--text-muted); padding: 2rem 0; font-family: 'Press Start 2P', monospace; font-size: 0.6rem; transition: color 0.4s var(--ease-fluid);">&copy; 2026 Omar Sherif.</p></footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetHref = `#${entry.target.id}`;
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === targetHref);
+                    });
+                }
+            });
+        }, { threshold: 0.20 });
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        const textToType = "Omar's Portfolio.";
+        const typewriterEl = document.getElementById('typewriter');
+        let typeIdx = 0;
+        let lastTime = 0;
+
+        function runTypewriter(timestamp) {
+            if (!lastTime) lastTime = timestamp;
+            const elapsed = timestamp - lastTime;
+            
+            if (elapsed >= 85) {
+                if (typeIdx < textToType.length) {
+                    typewriterEl.textContent += textToType.charAt(typeIdx);
+                    typeIdx++;
+                    lastTime = timestamp;
+                } else {
+                    return;
+                }
+            }
+            if (typeIdx < textToType.length) {
+                window.requestAnimationFrame(runTypewriter);
+            }
+        }
+        window.requestAnimationFrame(runTypewriter);
+
+        const stackContainer = document.getElementById('project-stack');
+        const slots = Array.from(stackContainer.querySelectorAll('.card-slot'));
+        let currentIndex = 0;
+
+        function updateStack() {
+            slots.forEach((slot, index) => {
+                slot.classList.remove('pos-0', 'pos-1', 'pos-2');
+                let position = (index - currentIndex + slots.length) % slots.length;
+                slot.classList.add(`pos-${position}`);
+            });
+        }
+        updateStack();
+        
+        stackContainer.addEventListener('click', (e) => {
+            const slot = e.target.closest('.card-slot');
+            if (slot && !slot.classList.contains('pos-0')) {
+                e.preventDefault();
+                currentIndex = slots.indexOf(slot);
+                updateStack();
+            }
+        });
+
+        let startX = 0, startTime = 0;
+        stackContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startTime = Date.now();
+        }, { passive: true });
+
+        stackContainer.addEventListener('touchend', (e) => {
+            const diffX = startX - e.changedTouches[0].clientX;
+            const velocity = Math.abs(diffX) / (Date.now() - startTime);
+            if (Math.abs(diffX) > 50 || velocity > 0.4) {
+                currentIndex = diffX > 0 ? (currentIndex + 1) % slots.length : (currentIndex - 1 + slots.length) % slots.length;
+                updateStack();
+            }
+        }, { passive: true });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % slots.length;
+                updateStack();
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + slots.length) % slots.length;
+                updateStack();
+            }
+        }, { passive: true });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slots.length;
+            updateStack();
+        }, { passive: true });
+        
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slots.length) % slots.length;
+            updateStack();
+        }, { passive: true });
+
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        const notionImg = document.getElementById('nav-notion-img');
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (notionImg) {
+            notionImg.src = currentTheme === 'dark' 
+                ? "https://cdn.simpleicons.org/notion/white" 
+                : "https://cdn.simpleicons.org/notion/black";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.style.setProperty('--theme-transition', 'none');
+            
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            
+            if (notionImg) {
+                notionImg.src = currentTheme === 'dark' 
+                    ? "https://cdn.simpleicons.org/notion/white" 
+                    : "https://cdn.simpleicons.org/notion/black";
+            }
+
+            toggleBtn.style.transform = 'scale(0.8) rotate(-90deg)';
+            setTimeout(() => {
+                toggleBtn.style.transform = '';
+                document.body.style.removeProperty('--theme-transition');
+            }, 250);
+        });
+    </script>
+</body>
+</html>
