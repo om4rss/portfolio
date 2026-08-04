@@ -37,5 +37,5 @@ om4r/
 ├── minimal.webp        # Minimal Second Brain template preview
 ├── simple.webp         # Simple Habit Tracker template preview
 ├── academicos.webp     # Academic OS template preview
-├── caffeine.png        # System utility branding icon
+├── caffeine.png        # Caffeine app branding icon
 └── README.md           # Project documentation
