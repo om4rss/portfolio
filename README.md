@@ -28,7 +28,7 @@ The website is built purely with native web technologies—zero heavy frameworks
 ---
 
 ## 📂 Project Structure
-test
+
 ```text
 om4r/
 ├── index.html          # Main application & reactive UI engine
