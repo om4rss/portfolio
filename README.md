@@ -33,7 +33,7 @@ The website is built purely with native web technologies—zero heavy frameworks
 om4r/
 ├── index.html          # Main application & reactive UI engine
 ├── pixel.html          # Secondary alternate layout view
-├── omar.webp           # Avatar image
+├── omar.webp           # Omar's selfie
 ├── minimal.webp        # Minimal Second Brain template preview
 ├── simple.webp         # Simple Habit Tracker template preview
 ├── academicos.webp     # Academic OS template preview
