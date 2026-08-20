@@ -29,17 +29,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Omar Sherif - Computer Science student focusing on systems, networking, and digital ecosystems.">
-    <title>Omar | Systems & Digital Ecosystems</title>
+    <title>Omar's Portfolio</title>
     
     <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
     
-    <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
-    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
@@ -128,7 +126,7 @@
             font-size: 0.7rem; color: var(--text-muted); font-weight: 600;
         }
 
-        /* Apple Glass Segmented Dock Navigation with Animated Glider Pill */
+        /* Apple Glass Segmented Dock Navigation */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateZ(0);
             z-index: 2000; width: max-content;
@@ -322,7 +320,7 @@
             width: 16px; opacity: 1; margin-right: 6px;
         }
 
-        /* Mirrored Dual Deck Layout - Zero Boundary Clipping */
+        /* Mirrored Dual Deck Layout */
         .dual-decks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 1rem; overflow: visible; }
         .deck-column { display: flex; flex-direction: column; position: relative; padding: 0 16px; overflow: visible; }
         .deck-header { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
@@ -352,7 +350,7 @@
         #project-stack .pos-2 { transform: translate3d(60px, 0, 0) scale(0.88); z-index: 10; opacity: 0.5; }
         #project-stack .pos-3 { transform: translate3d(90px, 0, 0) scale(0.82); z-index: 5; opacity: 0.25; }
         
-        /* Fully Visible Navigation Arrows */
+        /* Navigation Arrows */
         .stack-nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             width: 44px; height: 44px; border-radius: 50%;
@@ -374,7 +372,7 @@
             text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* Filterable Certifications - Fixed Centered Apple Glider Bar Channel */
+        /* Filterable Certifications */
         .cert-filter-bar {
             display: flex; 
             width: max-content; 
@@ -470,29 +468,25 @@
 </head>
 <body>
 
-    <!-- Ambient Glow Canvas -->
     <div class="bg-canvas">
         <div class="bg-glow-orb orb-1"></div>
         <div class="bg-glow-orb orb-2"></div>
     </div>
 
-    <!-- Top Left Floating Ayah Pill Notification -->
     <div class="ayah-pill-container">
-        <div class="ayah-pill">
+        <a href="https://quran.com/al-qamar/10-55" target="_blank" rel="noopener" class="ayah-pill">
             <span class="ayah-tag"><i class="fa-solid fa-star" style="font-size: 0.55rem;"></i> Ayah</span>
             <span class="arabic-text">فَدَعَا رَبَّهُ أَنِّي مَغْلُوبٌ فَانْتَصِرْ</span>
             <span class="ayah-ref">[54:10]</span>
-        </div>
+        </a>
     </div>
 
-    <!-- Route Switcher -->
     <div class="version-toggle-container">
         <a href="pixel.html" class="pixel-route-btn" aria-label="Switch to Pixel Version" title="Pixel Version">
             <i class="fa-solid fa-table-cells"></i>
         </a>
     </div>
 
-    <!-- Navigation Header (Apple Glass Segmented Dock with Sliding Glider) -->
     <nav aria-label="Main Navigation">
         <div class="nav-dock">
             <div class="nav-indicator"></div>
@@ -505,7 +499,6 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="avatar-box">
                 <div class="avatar-glow"></div>
@@ -522,9 +515,7 @@
             </div>
         </section>
 
-        <!-- Clean Bento Top Row (Notion Campus Leader + Community) -->
         <div class="bento-grid">
-            <!-- Notion Campus Leader Card -->
             <div class="col-6">
                 <div class="glass-panel highlight-card">
                     <div>
@@ -544,7 +535,6 @@
                 </div>
             </div>
 
-            <!-- Notion Community Card -->
             <div class="col-6">
                 <div class="glass-panel highlight-card">
                     <div>
@@ -563,7 +553,6 @@
             </div>
         </div>
 
-        <!-- About & Full Tech Stack Section -->
         <section id="about">
             <div class="section-heading">
                 <span class="section-subtitle">Overview</span>
@@ -571,13 +560,11 @@
             </div>
             
             <div class="bento-grid">
-                <!-- About Card -->
                 <div class="glass-panel bento-about col-5">
                     <h3>Who I Am</h3>
                     <p>I'm a Computer Science student at Ahram Canadian University interested in networking, system administration, and infrastructure. My goal is to build secure, seamless digital ecosystems and intelligent productivity systems.</p>
                 </div>
 
-                <!-- Complete Tech Stack Card -->
                 <div class="glass-panel bento-stack col-7">
                     <h3>Tech Stack</h3>
                     
@@ -626,7 +613,6 @@
             </div>
         </section>
 
-        <!-- Mirrored Dual Deck Section -->
         <section id="projects">
             <div class="section-heading">
                 <span class="section-subtitle">Portfolio</span>
@@ -634,7 +620,6 @@
             </div>
             
             <div class="dual-decks-grid">
-                <!-- Deck 1: Notion Ecosystem (Stacks Left) -->
                 <div class="deck-column">
                     <div class="deck-header"><i class="fa-solid fa-cubes" style="color: var(--accent-blue);"></i> Notion Ecosystem</div>
                     <div class="stack-area">
@@ -685,7 +670,6 @@
                     </div>
                 </div>
 
-                <!-- Deck 2: Technical & Hardware Projects (Stacks Right) -->
                 <div class="deck-column">
                     <div class="deck-header"><i class="fa-solid fa-microchip" style="color: var(--accent-blue);"></i> Technical Projects</div>
                     <div class="stack-area">
@@ -703,7 +687,7 @@
                                 <a href="https://github.com/om4rss/caffeine" target="_blank" rel="noopener" class="glass-panel stacked-card">
                                     <span class="popular-badge">System Utility</span>
                                     <div style="width:42px; height:42px; border-radius:12px; background:rgba(0,122,255,0.08); display:flex; align-items:center; justify-content:center; margin-bottom:0.8rem; border: 1px solid rgba(0,122,255,0.2);">
-                                        <img src="caffeine.png" alt="Caffeine Icon" width="22" height="22" style="filter: brightness(0) invert(1);">
+                                        <img src="caffeine.ico" alt="Caffeine Icon" width="22" height="22" style="filter: brightness(0) invert(1);">
                                     </div>
                                     <h3>Caffeine</h3>
                                     <p>Lightweight system utility preventing system sleep states and ensuring continuous execution.</p>
@@ -723,17 +707,15 @@
             </div>
         </section>
 
-        <!-- Filterable Certifications Section -->
         <section id="certs">
             <div class="section-heading">
                 <span class="section-subtitle">Credentials</span>
                 <h2>Verified Certifications</h2>
             </div>
             
-            <!-- Category Filter Bar with Animated Glider Pill -->
             <div class="cert-filter-bar">
                 <div class="filter-indicator"></div>
-                <button class="filter-btn active" data-filter="all">All (20)</button>
+                <button class="filter-btn active" data-filter="all">All (21)</button>
                 <button class="filter-btn" data-filter="sysadmin">SysAdmin & Infra</button>
                 <button class="filter-btn" data-filter="cyber">Cybersecurity</button>
                 <button class="filter-btn" data-filter="ai">AI & Compute</button>
@@ -742,10 +724,8 @@
                 <button class="filter-btn" data-filter="lang">Languages</button>
             </div>
 
-            <!-- Single Certs Grid -->
             <div class="certs-grid" id="certs-grid">
-                <!-- Cisco -->
-                <a href="https://www.credly.com/earner/earned/badge/48fcc13c-fc09-4a24-9d79-f3630b23a173" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco">
+                <a href="https://www.credly.com/badges/48fcc13c-fc09-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco">
                     <div class="cert-icon"><i class="fas fa-user-shield" style="color:#00bceb;"></i></div>
                     <div class="cert-info"><h4>Endpoint Security</h4><p>Cisco Academy</p></div>
                 </a>
@@ -757,7 +737,7 @@
                     <div class="cert-icon"><i class="fas fa-network-wired" style="color:#00bceb;"></i></div>
                     <div class="cert-info"><h4>Networking Devices & Config</h4><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco">
+                <a href="https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco">
                     <div class="cert-icon"><i class="fas fa-desktop" style="color:#00bceb;"></i></div>
                     <div class="cert-info"><h4>Operating Systems Basics</h4><p>Cisco Academy</p></div>
                 </a>
@@ -774,13 +754,26 @@
                     <div class="cert-info"><h4>Introduction to Modern AI</h4><p>Cisco Academy</p></div>
                 </a>
 
-                <!-- EF SET -->
                 <a href="https://cert.efset.org/en/FSfjU3" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="lang" data-company="EF SET">
                     <div class="cert-icon"><i class="fas fa-language" style="color:#007aff;"></i></div>
                     <div class="cert-info"><h4>EF SET 78/100 (C2 Proficient)</h4><p>EF SET</p></div>
                 </a>
 
-                <!-- Google -->
+                <a href="https://edu.google.accredible.com/0050227f-a195-495a-a2b4-9acfd849f131#acc.Ui4IORL2" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google">
+                    <div class="cert-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24">
+                            <defs>
+                                <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#4E82EE" />
+                                    <stop offset="50%" stop-color="#9B72CB" />
+                                    <stop offset="100%" stop-color="#D96570" />
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#geminiGrad)" d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z"/>
+                        </svg>
+                    </div>
+                    <div class="cert-info"><h4>Gemini Certified University Student</h4><p>Google for Education</p></div>
+                </a>
                 <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/A4LJNM9B9I8R" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google">
                     <div class="cert-icon"><i class="fa-brands fa-google" style="color:#ea4335;"></i></div>
                     <div class="cert-info"><h4>Google AI Professional Certificate</h4><p>Google</p></div>
@@ -794,14 +787,12 @@
                     <div class="cert-info"><h4>Technical Support Fundamentals</h4><p>Google</p></div>
                 </a>
 
-                <!-- HackerRank -->
                 <a href="https://www.hackerrank.com/certificates/89f4c8e0456d" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="HackerRank">
                     <div class="cert-icon"><i class="fa-brands fa-python" style="color:#3776ab;"></i></div>
                     <div class="cert-info"><h4>Python (Basic)</h4><p>HackerRank</p></div>
                 </a>
 
-                <!-- IBM -->
-                <a href="https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b#_" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="IBM">
+                <a href="https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="IBM">
                     <div class="cert-icon"><i class="fas fa-database" style="color:#006699;"></i></div>
                     <div class="cert-info"><h4>Accelerating DL with GPUs</h4><p>IBM | Cognitive Class</p></div>
                 </a>
@@ -809,38 +800,56 @@
                     <div class="cert-icon"><i class="fas fa-laptop" style="color:#006699;"></i></div>
                     <div class="cert-info"><h4>IT Fundamentals</h4><p>IBM</p></div>
                 </a>
-                <a href="#" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="IBM">
-                    <div class="cert-icon"><i class="fas fa-box" style="color:#006699;"></i></div>
-                    <div class="cert-info"><h4>Docker Essentials</h4><p>IBM</p></div>
+                <a href="https://courses.cognitiveclass.ai/certificates/user/certificates" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="IBM">
+                    <div class="cert-icon"><i class="fa-brands fa-docker" style="color:#0db7ed;"></i></div>
+                    <div class="cert-info"><h4>Docker Essentials</h4><p>IBM | Cognitive Class</p></div>
                 </a>
 
-                <!-- Microsoft -->
                 <a href="certificate.html" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Microsoft">
-                    <div class="cert-icon"><i class="fas fa-server" style="color:#0078d4;"></i></div>
+                    <div class="cert-icon"><i class="fa-brands fa-microsoft" style="color:#0078d4;"></i></div>
                     <div class="cert-info"><h4>Administer AD DS</h4><p>Microsoft Applied Skills</p></div>
                 </a>
 
-                <!-- Notion (Strict Rank: Essentials > Workflows > Advanced > AI) -->
                 <a href="https://verify.skilljar.com/c/r448pjhf3cb8" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="1">
-                    <div class="cert-icon"><i class="fas fa-cube" style="color:#fff;"></i></div>
+                    <div class="cert-icon">
+                        <img src="https://api.iconify.design/simple-icons:notion.svg?color=white" alt="Notion" width="22" height="22" style="filter: brightness(0) invert(1);" loading="lazy">
+                    </div>
                     <div class="cert-info"><h4>Notion Essentials</h4><p>Notion Academy</p></div>
                 </a>
                 <a href="https://verify.skilljar.com/c/ixzcha7b5vuw" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="2">
-                    <div class="cert-icon"><i class="fas fa-sync" style="color:#fff;"></i></div>
+                    <div class="cert-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="6" height="6" x="3" y="3" rx="1"/>
+                            <rect width="6" height="6" x="15" y="15" rx="1"/>
+                            <path d="M6 9v3a3 3 0 0 0 3 3h6"/>
+                            <path d="M18 9v6"/>
+                        </svg>
+                    </div>
                     <div class="cert-info"><h4>Notion Workflows</h4><p>Notion Academy</p></div>
                 </a>
                 <a href="https://verify.skilljar.com/c/5a38h8bb583z" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="3">
-                    <div class="cert-icon"><i class="fas fa-layer-group" style="color:#fff;"></i></div>
+                    <div class="cert-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
                     <div class="cert-info"><h4>Notion Advanced</h4><p>Notion Academy</p></div>
                 </a>
                 <a href="https://verify.skilljar.com/c/mnpiybjgn4hq" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="4">
-                    <div class="cert-icon"><i class="fas fa-robot" style="color:#fff;"></i></div>
+                    <div class="cert-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                            <path d="M5 3v4"/>
+                            <path d="M19 17v4"/>
+                            <path d="M3 5h4"/>
+                            <path d="M17 19h4"/>
+                        </svg>
+                    </div>
                     <div class="cert-info"><h4>Notion AI</h4><p>Notion Academy</p></div>
                 </a>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact">
             <div class="glass-panel contact-box">
                 <h2>Let's Connect</h2>
@@ -859,9 +868,7 @@
         <p>&copy; 2026 Omar Sherif. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive Engine -->
     <script>
-        // Dual Glider Tracker Engine (Nav Dock + Cert Filter Bar)
         const navIndicator = document.querySelector('.nav-indicator');
         const filterIndicator = document.querySelector('.filter-indicator');
 
@@ -877,7 +884,30 @@
             filterIndicator.style.width = `${activeBtn.offsetWidth}px`;
         }
 
-        // Click Override Lock for Nav Items
+        function refreshAllGliders() {
+            const activeNav = document.querySelector('.nav-dock a.active');
+            if (activeNav) updateNavGlider(activeNav);
+            
+            const activeFilter = document.querySelector('.filter-btn.active');
+            if (activeFilter) updateFilterGlider(activeFilter);
+        }
+
+        refreshAllGliders();
+        requestAnimationFrame(refreshAllGliders);
+        window.addEventListener('load', refreshAllGliders);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(refreshAllGliders);
+        }
+
+        if (window.ResizeObserver) {
+            const navDock = document.querySelector('.nav-dock');
+            if (navDock) new ResizeObserver(refreshAllGliders).observe(navDock);
+
+            const filterBar = document.querySelector('.cert-filter-bar');
+            if (filterBar) new ResizeObserver(refreshAllGliders).observe(filterBar);
+        }
+
         let isNavClickScrolling = false;
         let navClickTimeout = null;
 
@@ -896,7 +926,6 @@
             });
         });
 
-        // Smooth Scrollspy Nav Engine with Bottom Page Contact Override
         const sections = document.querySelectorAll('section[id]');
 
         function activateNavOnScroll() {
@@ -931,11 +960,6 @@
         }
         window.addEventListener('scroll', activateNavOnScroll, { passive: true });
 
-        // Initialize Nav Glider
-        const currentNavActive = document.querySelector('.nav-dock a.active');
-        if (currentNavActive) updateNavGlider(currentNavActive);
-
-        // Idle-Proof Mouse Tracker & 3D Glass Tilt Engine
         let ticking = false;
         const interactives = document.querySelectorAll('.glass-panel');
 
@@ -975,7 +999,6 @@
             }
         });
 
-        // Company Sorting & Glider Pill Filter Engine
         const filterBtns = document.querySelectorAll('.filter-btn');
         const certGrid = document.getElementById('certs-grid');
         const certCards = Array.from(document.querySelectorAll('.cert-card'));
@@ -998,16 +1021,8 @@
         }
 
         sortCertsByCompany();
-        const initialFilterActive = document.querySelector('.filter-btn.active');
-        if (initialFilterActive) updateFilterGlider(initialFilterActive);
 
-        window.addEventListener('resize', () => {
-            const activeNav = document.querySelector('.nav-dock a.active');
-            if (activeNav) updateNavGlider(activeNav);
-            
-            const activeFilter = document.querySelector('.filter-btn.active');
-            if (activeFilter) updateFilterGlider(activeFilter);
-        }, { passive: true });
+        window.addEventListener('resize', refreshAllGliders, { passive: true });
 
         let filterTimeout = null;
         filterBtns.forEach(btn => {
@@ -1021,7 +1036,6 @@
                 const filter = btn.getAttribute('data-filter');
                 if (filterTimeout) clearTimeout(filterTimeout);
 
-                // Phase 1: Fluid micro cross-fade out unselected
                 certCards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     const isMatch = (filter === 'all' || category === filter);
@@ -1030,7 +1044,6 @@
                     }
                 });
 
-                // Phase 2: Collapse & scale up matching cards
                 filterTimeout = setTimeout(() => {
                     if (filter === 'all') {
                         sortCertsByCompany();
@@ -1045,7 +1058,7 @@
                         if (isMatch) {
                             card.classList.remove('hidden');
                             card.classList.add('filtering-in');
-                            void card.offsetWidth; // Force reflow
+                            void card.offsetWidth;
                             card.classList.remove('filtering-in');
                         } else {
                             card.classList.add('hidden');
@@ -1055,7 +1068,6 @@
             });
         });
 
-        // Typewriter Animation Engine
         const textToType = "Omar's Portfolio.";
         const typewriterEl = document.getElementById('typewriter');
         let typeIdx = 0, lastTime = 0;
@@ -1073,7 +1085,6 @@
         }
         window.requestAnimationFrame(runTypewriter);
 
-        // Deck Slider Engine
         function createDeckController(containerId, prevBtnId, nextBtnId) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1110,7 +1121,7 @@
                     currentIndex = diffX > 0 ? (currentIndex + 1) % slots.length : (currentIndex - 1 + slots.length) % slots.length;
                     updateStack();
                 }
-            }, { passive: true });
+            });
 
             document.getElementById(nextBtnId)?.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % slots.length; updateStack();
@@ -1120,7 +1131,6 @@
             });
         }
 
-        // Initialize Decks
         createDeckController('notion-stack', 'notion-prev-btn', 'notion-next-btn');
         createDeckController('project-stack', 'proj-prev-btn', 'proj-next-btn');
     </script>
