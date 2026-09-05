@@ -152,10 +152,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Inter Font (Non-Render-Blocking) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
     </noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
@@ -503,7 +503,7 @@
             cursor: pointer; z-index: 300; transition: all 0.3s var(--ease-spring);
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
-        .stack-nav-btn:hover { background: rgba(237, 28, 36, 0.2); border-color: var(--hero-accent); color: var(--hero-accent); transform: translateY(-50%) scale(1.12); }
+        .stack-nav-btn:hover { background: rgba(237, 28, 36, 0.2); border-color: var(--hero-accent); color: var(--text-accent); transform: translateY(-50%) scale(1.12); }
         .stack-nav-left { left: -18px; }
         .stack-nav-right { right: -18px; }
         
@@ -597,6 +597,14 @@
 
         /* Responsiveness */
         @media (max-width: 900px) {
+            .bg-glow-orb {
+                animation: none !important;
+                filter: blur(60px) !important;
+                opacity: 0.12 !important;
+            }
+            .avatar-glow {
+                animation: none !important;
+            }
             .col-5, .col-6, .col-7 { grid-column: span 12; }
             .dual-decks-grid { grid-template-columns: 1fr; gap: 48px; }
             .deck-column { padding: 0; }
@@ -610,13 +618,6 @@
             .cert-filter-bar { width: 100%; justify-content: flex-start; overflow-x: auto; border-radius: 18px; margin: 0 0 2rem; }
             .filter-indicator { display: none; }
             .filter-btn.active { background: var(--hero-accent-dim); }
-        }
-
-        @media (max-width: 768px) {
-            .bg-glow-orb {
-                animation: none !important;
-                filter: blur(80px);
-            }
         }
     </style>
 </head>
@@ -665,7 +666,7 @@
                     <img src="omar.webp" alt="Omar Sherif - Systems & Infrastructure Specialist" class="hero-avatar" width="140" height="140" fetchpriority="high" decoding="async">
                 </picture>
             </div>
-            <h1><span id="typewriter">Omar Sherif</span></h1>
+            <h1><span id="typewriter">Omar Sherif.</span></h1>
             <p>Computer Science student @ Ahram Canadian University (ACU).<br>Interested in systems, IT infrastructure, networking, and cybersecurity.</p>
             <div class="hero-actions">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -1213,23 +1214,7 @@
             });
         });
 
-        const textToType = "Omar Sherif.";
-        const typewriterEl = document.getElementById('typewriter');
-        if (typewriterEl) typewriterEl.textContent = '';
-        let typeIdx = 0, lastTime = 0;
 
-        function runTypewriter(timestamp) {
-            if (!lastTime) lastTime = timestamp;
-            if (timestamp - lastTime >= 85) {
-                if (typeIdx < textToType.length) {
-                    typewriterEl.textContent += textToType.charAt(typeIdx);
-                    typeIdx++;
-                    lastTime = timestamp;
-                } else return;
-            }
-            if (typeIdx < textToType.length) window.requestAnimationFrame(runTypewriter);
-        }
-        window.requestAnimationFrame(runTypewriter);
 
         function createDeckController(containerId, prevBtnId, nextBtnId) {
             const container = document.getElementById(containerId);
