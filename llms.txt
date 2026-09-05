@@ -1,0 +1,47 @@
+# Omar Sherif
+
+> Computer Science student at Ahram Canadian University (ACU) specializing in systems, IT infrastructure, networking, cybersecurity, and Notion ecosystems. Notion Campus Leader and founder/manager of an 11,000+ member Notion community.
+
+## Overview
+Omar Sherif (online handle: `om4rss`, `om4r`) is a systems engineer, developer, and Notion systems architect based in Cairo, Egypt. He studies Computer Science at Ahram Canadian University and focuses on low-level systems, Active Directory infrastructure, networking, cybersecurity, and productivity architecture.
+
+- Primary Portfolio: https://om4r.pages.dev/
+- Pixel Edition: https://om4r.pages.dev/pixel.html
+- GitHub: https://github.com/om4rss
+- LinkedIn: https://www.linkedin.com/in/om4rs/
+- Credly Profile: https://www.credly.com/users/om4r
+- Notion Marketplace: https://www.notion.so/marketplace/profiles/om4r
+- Discord Community: https://discord.com/invite/notion-community-967943233105702922
+- Buy Me a Coffee: https://buymeacoffee.com/imomar
+- Contact Email: contact@omardoestech.com
+
+## Key Technical Focus Areas
+- **Systems & Infrastructure**: Linux (Fedora), Windows Server / Active Directory (AD DS), Docker, networking devices and protocols.
+- **Cybersecurity**: Endpoint security, network defense, threat fundamentals (certified by Cisco Academy).
+- **Programming Languages**: C, C++, Python.
+- **Hardware & IoT**: ESP32 microcontroller systems, robotics, IoT telemetry.
+- **Productivity & Workspace Architecture**: Advanced Notion database architecture, formula modeling, workflow automation.
+- **Creative Suite**: Premiere Pro, Photoshop, Illustrator, DaVinci Resolve, Figma, Blender.
+
+## Key Projects
+- [Minimal Second Brain](https://www.notion.so/marketplace/templates/msb): Flagship interconnected Notion system for organizing personal projects, knowledge, and tasks.
+- [Simple Habit Tracker](https://www.notion.com/templates/simplehabits): Minimalist habit tracking system with progress metrics.
+- [Academic OS](https://app.notion.com/templates/academicos): Comprehensive Notion workspace for university students to track courses, assignments, and exam schedules.
+- [Voice-Controlled ESP32 Robot](https://github.com/om4rss/esp32nexusr1): 2WD robotic car built with ESP32, L298N driver, and a Python server integrating the Gemini API for natural voice processing.
+- [Caffeine](https://github.com/om4rss/caffeine): Lightweight native Windows C++ utility preventing computer sleep during long tasks and downloads.
+
+## Verified Certifications
+- **Microsoft**: Administer AD DS (Microsoft Applied Skills)
+- **Cisco Academy**: Endpoint Security, Introduction to Cybersecurity, Networking Devices & Config, Operating Systems Basics, Computer Hardware Basics, Introduction to IoT, Introduction to Modern AI
+- **Google**: Gemini Certified University Student (Google for Education), Google AI Professional Certificate, Introduction to Git and GitHub, Technical Support Fundamentals
+- **IBM / Cognitive Class**: Accelerating DL with GPUs, Docker Essentials, IT Fundamentals
+- **Notion Academy**: Notion Essentials, Notion Workflows, Notion Advanced, Notion AI
+- **HackerRank**: Python (Basic)
+- **EF SET**: 78/100 — C2 Proficient (CEFR standard)
+
+## Community & Leadership
+- **Notion Campus Leader**: Ahram Canadian University (ACU) — empowering students with Notion productivity workflows and workshops.
+- **Notion Community Owner & Manager**: Discord server with over 11,000 members, managing moderation, bots, and community growth.
+
+## More Information
+For full project documentation and exhaustive credentials, see [llms-full.txt](https://om4r.pages.dev/llms-full.txt).

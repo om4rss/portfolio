@@ -1,0 +1,86 @@
+# Omar Sherif - Full Profile & Technical Documentation
+
+## Identity & Professional Summary
+- **Full Legal Name**: Omar Sherif
+- **Online Handles**: om4rss (GitHub), om4rs (LinkedIn), om4r (Notion Marketplace)
+- **Role**: Computer Science Student, Systems & IT Infrastructure Developer, Notion Campus Leader
+- **Institution**: Ahram Canadian University (ACU), Faculty of Computer Science
+- **Location**: Cairo, Egypt
+- **Primary Website**: https://om4r.pages.dev/
+- **Alternate Portfolio**: https://om4r.pages.dev/pixel.html
+- **Direct Contact**: contact@omardoestech.com
+
+Omar Sherif is a Computer Science undergraduate at Ahram Canadian University with specialized interest in low-level computing, networking protocols, system administration (Windows Active Directory & Fedora Linux), cybersecurity defenses, and digital workspace architecture. He is the official Notion Campus Leader at Ahram Canadian University and the founder/community manager of an 11,000+ member international Notion Discord community.
+
+---
+
+## Verified Credentials & Certifications
+
+### Microsoft
+- **Administer Active Directory Domain Services (AD DS)**: Microsoft Applied Skills credential verifying production expertise in managing domain controllers, identity architecture, organizational units, and Group Policy Objects. Verified via: https://om4r.pages.dev/certificate.html
+
+### Cisco Academy (via Credly)
+- **Endpoint Security**: Verified Credly badge (https://www.credly.com/badges/48fcc13c-fc09-4a24-9d79-f3630b23a173/public_url)
+- **Introduction to Cybersecurity**: Verified Credly badge (https://www.credly.com/badges/ea95911d-8a0f-439f-ab19-a15cbe9d4ccc/public_url)
+- **Networking Devices and Initial Configuration**: Verified Credly badge (https://www.credly.com/badges/d2dae157-4291-4d9b-90f5-77e2727bbef2/public_url)
+- **Operating Systems Basics**: Verified Credly badge (https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173/public_url)
+- **Computer Hardware Basics**: Verified Credly badge (https://www.credly.com/badges/1c25a57d-ee63-4607-9ed8-e4c1d209c5c4/public_url)
+- **Introduction to IoT**: Verified Credly badge (https://www.credly.com/badges/8500fb4b-3d21-4def-a6a6-7756efa7a85a/public_url)
+- **Introduction to Modern AI**: Verified Credly badge (https://www.credly.com/badges/a30c7ec2-d20d-4214-9685-ce94268993f5/public_url)
+
+### Google & Coursera
+- **Gemini Certified University Student**: Google for Education accredited badge (https://edu.google.accredible.com/0050227f-a195-495a-a2b4-9acfd849f131#acc.Ui4IORL2)
+- **Google AI Professional Certificate**: Coursera Specialization Certificate (https://www.coursera.org/account/accomplishments/specialization/certificate/A4LJNM9B9I8R)
+- **Introduction to Git and GitHub**: Google / Coursera Certificate (https://www.coursera.org/account/accomplishments/certificate/HMI0XKH8WBD5)
+- **Technical Support Fundamentals**: Google IT Support Professional Certificate module (https://www.coursera.org/account/accomplishments/verify/15YMGULD9GH3)
+
+### IBM & Cognitive Class
+- **Accelerating Deep Learning with GPUs**: Cognitive Class Certificate (https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b)
+- **Docker Essentials**: Cognitive Class Certificate
+- **IT Fundamentals**: IBM verified certificate
+
+### Notion Academy (Skilljar Verified)
+- **Notion Essentials**: Verified (https://verify.skilljar.com/c/r448pjhf3cb8)
+- **Notion Workflows**: Verified (https://verify.skilljar.com/c/ixzcha7b5vuw)
+- **Notion Advanced**: Verified (https://verify.skilljar.com/c/5a38h8bb583z)
+- **Notion AI**: Verified (https://verify.skilljar.com/c/mnpiybjgn4hq)
+
+### Language & Coding Skills
+- **EF SET English Certificate**: Score 78/100, C2 Proficient in English according to the Common European Framework of Reference (CEFR). Verified: https://cert.efset.org/en/FSfjU3
+- **HackerRank Python (Basic)**: Verified: https://www.hackerrank.com/certificates/89f4c8e0456d
+
+---
+
+## Projects Portfolio
+
+### Notion Productivity Workspaces
+1. **Minimal Second Brain**
+   - URL: https://www.notion.so/marketplace/templates/msb
+   - Description: An interconnected Notion architecture based on Tiago Forte's P.A.R.A. methodology, tailored for frictionless daily execution, cross-database relations, and knowledge retention.
+2. **Simple Habit Tracker**
+   - URL: https://www.notion.com/templates/simplehabits
+   - Description: A high-clarity daily tracking system using automated rolling progress metrics and minimalistic aesthetics to build long-term consistency.
+3. **Academic OS**
+   - URL: https://app.notion.com/templates/academicos
+   - Description: A university lifecycle workspace managing courses, credit hours, assignment pipelines, professor contacts, and exam preparation.
+
+### Technical, Hardware & Software Systems
+1. **Voice-Controlled ESP32 Robot**
+   - GitHub: https://github.com/om4rss/esp32nexusr1
+   - Technologies: ESP32, C++, Python, Gemini API, L298N Motor Driver, WebSockets.
+   - Description: An intelligent two-wheel-drive robotic platform receiving spoken audio commands, parsing intent through a Python server powered by Google's Gemini multimodal models, and controlling hardware movement with sub-second latency.
+2. **Caffeine**
+   - GitHub: https://github.com/om4rss/caffeine
+   - Technologies: Native C++, Win32 API.
+   - Description: A zero-overhead background utility for Windows using SetThreadExecutionState to keep systems awake during intensive computation, render queues, or massive network downloads without altering OS power plans.
+
+---
+
+## Verified Social & Professional Profiles
+- **Portfolio**: https://om4r.pages.dev/
+- **GitHub**: https://github.com/om4rss
+- **LinkedIn**: https://www.linkedin.com/in/om4rs/
+- **Credly Profile**: https://www.credly.com/users/om4r
+- **Notion Creator**: https://www.notion.so/marketplace/profiles/om4r
+- **Buy Me a Coffee**: https://buymeacoffee.com/imomar
+- **Discord Community**: https://discord.com/invite/notion-community-967943233105702922
