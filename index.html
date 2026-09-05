@@ -28,7 +28,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Sherif — Systems, Infrastructure & Notion Portfolio</title>
+    <title>Omar's Portfolio</title>
     <meta name="description" content="Official portfolio of Omar Sherif — Computer Science student at Ahram Canadian University (ACU) specializing in systems, IT infrastructure, networking, cybersecurity, and Notion ecosystems.">
     <meta name="keywords" content="Omar Sherif, Omar Sherif portfolio, Omar Sherif ACU, Omar Sherif Ahram Canadian University, om4rss, om4r, systems engineer, IT infrastructure, Active Directory, Notion Campus Leader, Cairo Egypt">
     <meta name="author" content="Omar Sherif">
@@ -166,8 +166,9 @@
             --card-border: rgba(255, 255, 255, 0.08);
             --card-border-hover: rgba(237, 28, 36, 0.45);
             --text-main: #FFFFFF;
-            --text-muted: #9B9B9B;
+            --text-muted: #A0A0A0;
             --text-dim: #9E9E9E;
+            --text-accent: #FF5257;
             --hero-accent: #ED1C24;
             --hero-accent-dim: rgba(237, 28, 36, 0.14);
             --hero-glow: rgba(237, 28, 36, 0.3);
@@ -202,7 +203,8 @@
         }
         .bg-glow-orb {
             position: absolute; border-radius: 50%; filter: blur(140px);
-            opacity: 0.16; will-change: transform;
+            opacity: 0.16; will-change: transform, opacity;
+            contain: layout style paint;
             animation: orbFloat 22s infinite alternate var(--ease-spring);
         }
         .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #ED1C24 0%, transparent 70%); }
@@ -235,7 +237,7 @@
             transform: translateY(-2px);
         }
         .ayah-pill .ayah-tag {
-            font-size: 0.65rem; font-weight: 700; color: var(--hero-accent);
+            font-size: 0.65rem; font-weight: 700; color: var(--text-accent);
             text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 4px;
         }
         .ayah-pill .arabic-text {
@@ -305,7 +307,7 @@
         .section-heading { text-align: center; margin-bottom: 2.2rem; }
         .section-subtitle {
             font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--hero-accent); margin-bottom: 6px; display: block;
+            color: var(--text-accent); margin-bottom: 6px; display: block;
         }
         h2 {
             font-size: 2.4rem; font-weight: 800; letter-spacing: -0.04em;
@@ -330,6 +332,8 @@
             width: 145%; height: 145%; border-radius: 50%;
             background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
             z-index: 1; animation: auraPulse 4s infinite ease-in-out;
+            will-change: transform, opacity;
+            contain: layout style paint;
         }
         @keyframes auraPulse {
             0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
@@ -340,7 +344,7 @@
             font-size: 4.2rem; font-weight: 900; letter-spacing: -0.05em; line-height: 1.1;
             margin-bottom: 0.8rem; height: 1.1em; display: flex; align-items: center; justify-content: center;
         }
-        #typewriter::after { content: '|'; animation: blink 0.7s infinite; color: var(--hero-accent); margin-left: 4px; }
+        #typewriter::after { content: '|'; animation: blink 0.7s infinite; color: var(--text-accent); margin-left: 4px; }
         @keyframes blink { 50% { opacity: 0; } }
 
         .hero p { max-width: 580px; font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 400; }
@@ -1069,69 +1073,21 @@
         });
 
         const sections = document.querySelectorAll('section[id]');
-        let sectionBounds = [];
-        let docScrollHeight = 0;
-
-        function updateCachedLayout() {
-            docScrollHeight = document.documentElement.scrollHeight;
-            sectionBounds = Array.from(sections).map(sec => ({
-                id: sec.getAttribute('id'),
-                top: sec.offsetTop,
-                bottom: sec.offsetTop + sec.offsetHeight
-            }));
-        }
-
-        updateCachedLayout();
-        window.addEventListener('resize', updateCachedLayout, { passive: true });
-        window.addEventListener('load', updateCachedLayout);
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(updateCachedLayout);
-        }
-
-        let navScrollTicking = false;
-
-        function activateNavOnScroll() {
-            if (isNavClickScrolling || navScrollTicking) return;
-            navScrollTicking = true;
-
-            window.requestAnimationFrame(() => {
-                navScrollTicking = false;
-                if (isNavClickScrolling) return;
-
-                const scrollPos = window.pageYOffset + (window.innerHeight * 0.35);
-                const isAtBottom = (window.innerHeight + window.pageYOffset) >= (docScrollHeight - 80);
-
-                let activeId = '';
-
-                if (isAtBottom) {
-                    activeId = 'contact';
-                } else {
-                    for (let i = 0; i < sectionBounds.length; i++) {
-                        const sec = sectionBounds[i];
-                        if (scrollPos >= sec.top && scrollPos < sec.bottom) {
-                            activeId = sec.id;
-                            break;
-                        }
-                    }
-                }
-
-                if (activeId) {
-                    let changed = false;
+        const observerOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
+        const sectionObserver = new IntersectionObserver((entries) => {
+            if (isNavClickScrolling) return;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
                     navDockLinks.forEach(a => {
-                        const isTarget = (a.getAttribute('href') === `#${activeId}`);
-                        if (a.classList.contains('active') !== isTarget) {
-                            a.classList.toggle('active', isTarget);
-                            changed = true;
-                        }
+                        const isTarget = a.getAttribute('href') === `#${id}`;
+                        a.classList.toggle('active', isTarget);
+                        if (isTarget) updateNavGlider(a);
                     });
-                    if (changed) {
-                        const activeNav = document.querySelector('.nav-dock a.active');
-                        if (activeNav) updateNavGlider(activeNav);
-                    }
                 }
             });
-        }
-        window.addEventListener('scroll', activateNavOnScroll, { passive: true });
+        }, observerOptions);
+        sections.forEach(sec => sectionObserver.observe(sec));
 
         let ticking = false;
         const interactives = document.querySelectorAll('.glass-panel');
