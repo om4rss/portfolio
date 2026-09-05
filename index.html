@@ -160,15 +160,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
     <style>
+        @font-face {
+            font-family: 'Font Awesome 6 Free';
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Font Awesome 6 Brands';
+            font-display: swap;
+        }
+
         :root {
             --bg-base: #000000;
             --card-bg: rgba(22, 22, 22, 0.72);
             --card-border: rgba(255, 255, 255, 0.08);
             --card-border-hover: rgba(237, 28, 36, 0.45);
             --text-main: #FFFFFF;
-            --text-muted: #A0A0A0;
-            --text-dim: #9E9E9E;
-            --text-accent: #FF5257;
+            --text-muted: #B5B5B5;
+            --text-dim: #A3A3A3;
+            --text-accent: #FF5A5F;
             --hero-accent: #ED1C24;
             --hero-accent-dim: rgba(237, 28, 36, 0.14);
             --hero-glow: rgba(237, 28, 36, 0.3);
@@ -203,7 +212,8 @@
         }
         .bg-glow-orb {
             position: absolute; border-radius: 50%; filter: blur(140px);
-            opacity: 0.16; will-change: transform, opacity;
+            opacity: 0.16; will-change: transform;
+            transform: translate3d(0, 0, 0);
             contain: layout style paint;
             animation: orbFloat 22s infinite alternate var(--ease-spring);
         }
@@ -297,7 +307,7 @@
         }
         .pixel-route-btn:hover {
             transform: translateY(-2px) scale(1.08); border-color: var(--card-border-hover);
-            color: var(--hero-accent); background: rgba(237, 28, 36, 0.1);
+            color: var(--text-accent); background: rgba(237, 28, 36, 0.1);
         }
 
         /* Layout Container */
@@ -328,7 +338,7 @@
             position: relative; z-index: 2; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
         .avatar-glow {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            position: absolute; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0);
             width: 145%; height: 145%; border-radius: 50%;
             background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
             z-index: 1; animation: auraPulse 4s infinite ease-in-out;
@@ -336,8 +346,8 @@
             contain: layout style paint;
         }
         @keyframes auraPulse {
-            0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.12); }
+            0%, 100% { opacity: 0.35; transform: translate3d(-50%, -50%, 0) scale(1); }
+            50% { opacity: 0.8; transform: translate3d(-50%, -50%, 0) scale(1.12); }
         }
 
         .hero h1 {
@@ -600,6 +610,13 @@
             .cert-filter-bar { width: 100%; justify-content: flex-start; overflow-x: auto; border-radius: 18px; margin: 0 0 2rem; }
             .filter-indicator { display: none; }
             .filter-btn.active { background: var(--hero-accent-dim); }
+        }
+
+        @media (max-width: 768px) {
+            .bg-glow-orb {
+                animation: none !important;
+                filter: blur(80px);
+            }
         }
     </style>
 </head>
@@ -1073,20 +1090,19 @@
         });
 
         const sections = document.querySelectorAll('section[id]');
-        const observerOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
         const sectionObserver = new IntersectionObserver((entries) => {
             if (isNavClickScrolling) return;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navDockLinks.forEach(a => {
-                        const isTarget = a.getAttribute('href') === `#${id}`;
-                        a.classList.toggle('active', isTarget);
-                        if (isTarget) updateNavGlider(a);
+                        const isMatch = a.getAttribute('href') === `#${id}`;
+                        a.classList.toggle('active', isMatch);
+                        if (isMatch) updateNavGlider(a);
                     });
                 }
             });
-        }, observerOptions);
+        }, { root: null, rootMargin: '-30% 0px -60% 0px', threshold: 0 });
         sections.forEach(sec => sectionObserver.observe(sec));
 
         let ticking = false;
