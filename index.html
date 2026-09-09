@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <script>
-      window.addEventListener('DOMContentLoaded', function() {
-        const injectTracking = function() {
+      window.addEventListener('DOMContentLoaded', () => {
+        const injectTracking = () => {
           if (window.gtagInitialized) return;
           window.gtagInitialized = true;
           
@@ -11,12 +11,12 @@
           window.removeEventListener('scroll', injectTracking);
           window.removeEventListener('mousemove', injectTracking);
 
-          var script = document.createElement('script');
+          const script = document.createElement('script');
           script.async = true;
           script.src = "https://www.googletagmanager.com/gtag/js?id=G-KWXNGXX7TG";
           document.head.appendChild(script);
           window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){dataLayer.push(arguments);}
+          window.gtag = function(){dataLayer.push(arguments);};
           gtag('js', new Date());
           gtag('config', 'G-KWXNGXX7TG');
         };
@@ -89,18 +89,23 @@
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">    
-    <!-- Preconnects -->
+    
+    <!-- Hero Image & Preconnects -->
+    <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- External WebFont Preloads -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Inter Font (Non-Render-Blocking) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
     <style>
         @font-face {
@@ -413,7 +418,7 @@
         
         .stack-area { position: relative; min-height: 440px; width: 100%; display: flex; justify-content: center; align-items: center; overflow: visible; }
         .stack-container { position: relative; width: 100%; height: 420px; touch-action: pan-y; overflow: visible; }
-        .card-slot { position: absolute !important; width: 100%; height: 100%; top: 0; transition: transform 0.45s var(--ease-spring); cursor: pointer; }
+        .card-slot { position: absolute !important; width: 100%; height: 100%; top: 0; transition: all 0.45s var(--ease-spring); cursor: pointer; will-change: transform; }
         
         .stacked-card {
             width: calc(100% - 50px); height: 100%; padding: 1.6rem; text-decoration: none; color: inherit;
@@ -443,7 +448,8 @@
             background: rgba(24, 24, 24, 0.95); backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.16); color: #FFFFFF;
             font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 300; transition: all 0.3s var(--ease-spring);
+            cursor: pointer; z-index: 300;
+            transition: all 0.3s var(--ease-spring);
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
         .stack-nav-btn:hover { background: rgba(237, 28, 36, 0.2); border-color: var(--hero-accent); color: var(--text-accent); transform: translateY(-50%) scale(1.12); }
@@ -532,7 +538,9 @@
             width: 54px; height: 54px; border-radius: 50%;
             background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
             display: flex; align-items: center; justify-content: center;
-            color: #FFFFFF; font-size: 1.35rem; transition: all 0.3s var(--ease-spring); text-decoration: none;
+            color: #FFFFFF; font-size: 1.35rem;
+            transition: all 0.3s var(--ease-spring);
+            text-decoration: none;
         }
         .social-icon:hover { background: var(--hero-accent); color: #FFFFFF; transform: scale(1.1); box-shadow: 0 10px 25px rgba(237, 28, 36, 0.4); }
 
@@ -573,8 +581,8 @@
 
     <!-- Top Left Floating Ayah Pill Notification -->
     <div class="ayah-pill-container">
-        <a href="https://quran.com/al-qamar/10-55" target="_blank" rel="noopener" class="ayah-pill">
-            <span class="ayah-tag"><i class="fa-solid fa-star" style="font-size: 0.55rem;"></i> Ayah</span>
+        <a href="https://quran.com/al-qamar/10-55" target="_blank" rel="noopener" class="ayah-pill" aria-label="Quran Ayah 54:10">
+            <span class="ayah-tag"><i class="fa-solid fa-star" style="font-size: 0.55rem;" aria-hidden="true"></i> Ayah</span>
             <span class="arabic-text">فَدَعَا رَبَّهُ أَنِّي مَغْلُوبٌ فَانْتَصِرْ</span>
             <span class="ayah-ref">[54:10]</span>
         </a>
@@ -583,7 +591,7 @@
     <!-- Route Switcher -->
     <div class="version-toggle-container">
         <a href="pixel.html" class="pixel-route-btn" aria-label="Switch to Pixel Version" title="Pixel Version">
-            <i class="fa-solid fa-table-cells"></i>
+            <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
         </a>
     </div>
 
@@ -591,11 +599,11 @@
     <nav aria-label="Main Navigation">
         <div class="nav-dock">
             <div class="nav-indicator"></div>
-            <a href="#home" class="nav-item active" aria-label="Home"><i class="fa-solid fa-house"></i><span>Home</span></a>
-            <a href="#about" class="nav-item" aria-label="About"><i class="fa-solid fa-circle-user"></i><span>About</span></a>
-            <a href="#projects" class="nav-item" aria-label="Projects & Notion"><i class="fa-solid fa-cubes"></i><span>Projects</span></a>
-            <a href="#certs" class="nav-item" aria-label="Skills and Certs"><i class="fa-solid fa-award"></i><span>Skills</span></a>
-            <a href="#contact" class="nav-item" aria-label="Contact"><i class="fa-solid fa-paper-plane"></i><span>Contact</span></a>
+            <a href="#home" class="nav-item active" aria-label="Home"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Home</span></a>
+            <a href="#about" class="nav-item" aria-label="About"><i class="fa-solid fa-circle-user" aria-hidden="true"></i><span>About</span></a>
+            <a href="#projects" class="nav-item" aria-label="Projects & Notion"><i class="fa-solid fa-cubes" aria-hidden="true"></i><span>Projects</span></a>
+            <a href="#certs" class="nav-item" aria-label="Skills and Certs"><i class="fa-solid fa-award" aria-hidden="true"></i><span>Skills</span></a>
+            <a href="#contact" class="nav-item" aria-label="Contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Contact</span></a>
         </div>
     </nav>
 
@@ -625,7 +633,7 @@
                         <div class="highlight-header">
                             <div class="highlight-title">Notion Campus Leader</div>
                             <div class="highlight-icon">
-                                <img src="https://api.iconify.design/simple-icons:notion.svg?color=white" alt="Notion" width="18" height="18" loading="lazy">
+                                <img src="icons/notion.svg" alt="Notion" width="18" height="18" loading="lazy" decoding="async">
                             </div>
                         </div>
                         <div class="highlight-desc">
@@ -633,40 +641,42 @@
                         </div>
                     </div>
                     <div class="stat-pill">
-                        <i class="fa-solid fa-building-columns" style="color: #FFFFFF;"></i> Ahram Canadian University
+                        <i class="fa-solid fa-building-columns" style="color: #FFFFFF;" aria-hidden="true"></i> Ahram Canadian University
                     </div>
                 </div>
             </div>
 
             <div class="col-6">
-                <a href="https://discord.com/invite/notion-community-967943233105702922" target="_blank" rel="noopener" class="glass-panel highlight-card">
+                <a href="https://discord.com/invite/notion-community-967943233105702922" target="_blank" rel="noopener" class="glass-panel highlight-card" aria-label="Notion Discord Community with 11,000+ members">
                     <div>
                         <div class="highlight-header">
-                            <div class="highlight-title">Notion Community</div>
-                            <div class="highlight-icon"><i class="fa-brands fa-discord"></i></div>
+                            <div class="highlight-title">Notion Community Lead</div>
+                            <div class="highlight-icon"><i class="fa-brands fa-discord" aria-hidden="true"></i></div>
                         </div>
                         <div class="highlight-desc">
-                            Community Manager and Owner of the Notion Discord community. Handling server moderation, bots, and day-to-day operations.
+                            Building and cultivating vibrant digital spaces for creators, systems thinkers and productivity builders worldwide.
                         </div>
                     </div>
                     <div class="stat-pill">
-                        <i class="fa-solid fa-users" style="color: #FFFFFF;"></i> 11,000+ Members
+                        <i class="fa-solid fa-users" style="color: #FFFFFF;" aria-hidden="true"></i> 11,000+ Members
                     </div>
                 </a>
             </div>
         </div>
 
-        <!-- About & Full Tech Stack Section -->
-        <section id="about">
+        <!-- Bento Bottom Row: About + Tech Stack -->
+        <section id="about" style="padding: 0;">
             <div class="section-heading">
                 <span class="section-subtitle">Overview</span>
                 <h2>Who I Am & What I Use</h2>
             </div>
-            
             <div class="bento-grid">
                 <div class="glass-panel bento-about col-5">
-                    <h3>Who I Am</h3>
-                    <p>I'm a Computer Science student at Ahram Canadian University, with a strong interest in IT, infrastructure, networking and cybersecurity. I enjoy building practical tools and understanding how systems work under the hood.</p>
+                    <h3>About Me</h3>
+                    <p>
+                        I focus on systems engineering, IT infrastructure, AD DS environments, and advanced productivity architectures with Notion. 
+                        Driven by minimal design, terminal-driven workflows, and rock-solid reliability.
+                    </p>
                 </div>
 
                 <div class="glass-panel bento-stack col-7">
@@ -675,42 +685,42 @@
                     <div class="stack-group">
                         <div class="stack-group-title">Languages & Systems</div>
                         <div class="skills-row">
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:c.svg?color=white" alt="C" loading="lazy"></span> C</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:cplusplus.svg?color=white" alt="C++" loading="lazy"></span> C++</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:python.svg?color=white" alt="Python" loading="lazy"></span> Python</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:linux.svg?color=white" alt="Linux" loading="lazy"></span> Fedora Linux</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:windows.svg?color=white" alt="Windows" loading="lazy"></span> Active Directory</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/c.svg" alt="C" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> C</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/cplusplus.svg" alt="C++" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> C++</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/python.svg" alt="Python" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Python</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/linux.svg" alt="Linux" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Fedora Linux</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/windows.svg" alt="Windows" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Active Directory</div>
                         </div>
                     </div>
 
                     <div class="stack-group">
                         <div class="stack-group-title">Creative Suite</div>
                         <div class="skills-row">
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobepremierepro.svg?color=white" alt="Premiere" loading="lazy"></span> Premiere Pro</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobephotoshop.svg?color=white" alt="Photoshop" loading="lazy"></span> Photoshop</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:adobeillustrator.svg?color=white" alt="Illustrator" loading="lazy"></span> Illustrator</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:davinciresolve.svg?color=white" alt="Resolve" loading="lazy"></span> DaVinci Resolve</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:figma.svg?color=white" alt="Figma" loading="lazy"></span> Figma</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:blender.svg?color=white" alt="Blender" loading="lazy"></span> Blender</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/adobepremierepro.svg" alt="Premiere" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Premiere Pro</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/adobephotoshop.svg" alt="Photoshop" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Photoshop</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/adobeillustrator.svg" alt="Illustrator" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Illustrator</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/davinciresolve.svg" alt="Resolve" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> DaVinci Resolve</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/figma.svg" alt="Figma" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Figma</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/blender.svg" alt="Blender" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Blender</div>
                         </div>
                     </div>
 
                     <div class="stack-group">
                         <div class="stack-group-title">Tools & DevOps</div>
                         <div class="skills-row">
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:visualstudiocode.svg?color=white" alt="VSCode" loading="lazy"></span> VS Code</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:clion.svg?color=white" alt="CLion" loading="lazy"></span> CLion</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:pycharm.svg?color=white" alt="PyCharm" loading="lazy"></span> PyCharm</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:git.svg?color=white" alt="Git" loading="lazy"></span> Git</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:github.svg?color=white" alt="GitHub" loading="lazy"></span> GitHub</div>
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:docker.svg?color=white" alt="Docker" loading="lazy"></span> Docker</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/visualstudiocode.svg" alt="VSCode" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> VS Code</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/clion.svg" alt="CLion" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> CLion</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/pycharm.svg" alt="PyCharm" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> PyCharm</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/git.svg" alt="Git" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Git</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/github.svg" alt="GitHub" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> GitHub</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/docker.svg" alt="Docker" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Docker</div>
                         </div>
                     </div>
 
                     <div class="stack-group">
                         <div class="stack-group-title">Productivity & Architecture</div>
                         <div class="skills-row">
-                            <div class="skill-tag"><span class="icon-reveal"><img src="https://api.iconify.design/simple-icons:notion.svg?color=white" alt="Notion" loading="lazy"></span> Notion</div>
+                            <div class="skill-tag"><span class="icon-reveal"><img src="icons/notion.svg" alt="Notion" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true"></span> Notion</div>
                         </div>
                     </div>
                 </div>
@@ -727,12 +737,12 @@
             <div class="dual-decks-grid">
                 <!-- Deck 1: Notion Ecosystem -->
                 <div class="deck-column">
-                    <div class="deck-header"><i class="fa-solid fa-cubes"></i> Notion Workspaces</div>
+                    <div class="deck-header"><i class="fa-solid fa-cubes" aria-hidden="true"></i> Notion Workspaces</div>
                     <div class="stack-area">
-                        <button class="stack-nav-btn stack-nav-left" id="notion-prev-btn" aria-label="Previous Notion Template"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="stack-nav-btn stack-nav-left" id="notion-prev-btn" aria-label="Previous Notion Template"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                         <div class="stack-container" id="notion-stack">
                             <div class="card-slot pos-0">
-                                <a href="https://www.notion.so/marketplace/templates/msb" target="_blank" rel="noopener" class="glass-panel stacked-card">
+                                <a href="https://www.notion.so/marketplace/templates/msb" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Minimal Second Brain Notion Template">
                                     <span class="popular-badge">Flagship</span>
                                     <picture>
                                         <source srcset="minimal.webp" type="image/webp">
@@ -743,7 +753,7 @@
                                 </a>
                             </div>
                             <div class="card-slot pos-1">
-                                <a href="https://www.notion.com/templates/simplehabits" target="_blank" rel="noopener" class="glass-panel stacked-card">
+                                <a href="https://www.notion.com/templates/simplehabits" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Simple Habit Tracker Notion Template">
                                     <span class="popular-badge">Most Popular</span>
                                     <picture>
                                         <source srcset="simple.webp" type="image/webp">
@@ -754,7 +764,7 @@
                                 </a>
                             </div>
                             <div class="card-slot pos-2">
-                                <a href="https://app.notion.com/templates/academicos" target="_blank" rel="noopener" class="glass-panel stacked-card">
+                                <a href="https://app.notion.com/templates/academicos" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Academic OS Notion Template">
                                     <span class="popular-badge">Student Special</span>
                                     <picture>
                                         <source srcset="academicos.webp" type="image/webp">
@@ -765,50 +775,50 @@
                                 </a>
                             </div>
                             <div class="card-slot pos-3">
-                                <a href="https://www.notion.so/marketplace/profiles/om4r" target="_blank" rel="noopener" class="glass-panel stacked-card">
-                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fas fa-store"></i></div>
+                                <a href="https://www.notion.so/marketplace/profiles/om4r" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Notion Marketplace Store">
+                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fas fa-store" aria-hidden="true"></i></div>
                                     <h3>Marketplace Store</h3>
                                     <p>Browse my collection of academic and productivity Notion templates.</p>
                                 </a>
                             </div>
                         </div>
-                        <button class="stack-nav-btn stack-nav-right" id="notion-next-btn" aria-label="Next Notion Template"><i class="fas fa-chevron-right"></i></button>
+                        <button type="button" class="stack-nav-btn stack-nav-right" id="notion-next-btn" aria-label="Next Notion Template"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
                 <!-- Deck 2: Technical & Hardware Projects -->
                 <div class="deck-column">
-                    <div class="deck-header"><i class="fa-solid fa-microchip"></i> Technical Projects</div>
+                    <div class="deck-header"><i class="fa-solid fa-microchip" aria-hidden="true"></i> Technical Projects</div>
                     <div class="stack-area">
-                        <button class="stack-nav-btn stack-nav-left" id="proj-prev-btn" aria-label="Previous Technical Project"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="stack-nav-btn stack-nav-left" id="proj-prev-btn" aria-label="Previous Technical Project"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
                         <div class="stack-container" id="project-stack">
                             <div class="card-slot pos-0">
-                                <a href="https://github.com/om4rss/esp32nexusr1" target="_blank" rel="noopener" class="glass-panel stacked-card">
+                                <a href="https://github.com/om4rss/esp32nexusr1" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Voice-Controlled ESP32 Robot on GitHub">
                                     <span class="popular-badge">Robotics & AI</span>
-                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fas fa-robot"></i></div>
+                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fas fa-robot" aria-hidden="true"></i></div>
                                     <h3>Voice-Controlled ESP32 Robot</h3>
                                     <p>A 2WD robotic car built with an ESP32, L298N driver, and a Python server that processes voice commands using Gemini.</p>
                                 </a>
                             </div>
                             <div class="card-slot pos-1">
-                                <a href="https://github.com/om4rss/caffeine" target="_blank" rel="noopener" class="glass-panel stacked-card">
+                                <a href="https://github.com/om4rss/caffeine" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="Caffeine System Utility on GitHub">
                                     <span class="popular-badge">System Utility</span>
                                     <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; margin-bottom:0.8rem; border: 1px solid var(--card-border);">
-                                        <img src="caffeine.ico" alt="Caffeine Icon" width="22" height="22" style="filter: brightness(0) invert(1);">
+                                        <img src="caffeine.ico" alt="Caffeine Icon" width="22" height="22" loading="lazy" decoding="async" style="filter: brightness(0) invert(1);">
                                     </div>
                                     <h3>Caffeine</h3>
                                     <p>A lightweight native C++ utility for Windows that prevents your computer from sleeping during long tasks or downloads.</p>
                                 </a>
                             </div>
                             <div class="card-slot pos-2">
-                                <a href="https://github.com/om4rss" target="_blank" rel="noopener" class="glass-panel stacked-card">
-                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fab fa-github"></i></div>
+                                <a href="https://github.com/om4rss" target="_blank" rel="noopener" class="glass-panel stacked-card" aria-label="GitHub Profile and Repositories">
+                                    <div style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:0.8rem; border: 1px solid var(--card-border); color: #FFFFFF;"><i class="fab fa-github" aria-hidden="true"></i></div>
                                     <h3>GitHub Repositories</h3>
                                     <p>Browse my open-source projects, system utilities, and hardware experiments on GitHub.</p>
                                 </a>
                             </div>
                         </div>
-                        <button class="stack-nav-btn stack-nav-right" id="proj-next-btn" aria-label="Next Technical Project"><i class="fas fa-chevron-right"></i></button>
+                        <button type="button" class="stack-nav-btn stack-nav-right" id="proj-next-btn" aria-label="Next Technical Project"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -823,110 +833,110 @@
             
             <div class="cert-filter-bar">
                 <div class="filter-indicator"></div>
-                <button class="filter-btn active" data-filter="all">All (21)</button>
-                <button class="filter-btn" data-filter="sysadmin">SysAdmin & Infra</button>
-                <button class="filter-btn" data-filter="cyber">Cybersecurity</button>
-                <button class="filter-btn" data-filter="ai">AI & Compute</button>
-                <button class="filter-btn" data-filter="dev">Dev & Tools</button>
-                <button class="filter-btn" data-filter="notion">Notion</button>
-                <button class="filter-btn" data-filter="lang">Languages</button>
+                <button type="button" class="filter-btn active" data-filter="all">All (21)</button>
+                <button type="button" class="filter-btn" data-filter="sysadmin">SysAdmin & Infra</button>
+                <button type="button" class="filter-btn" data-filter="cyber">Cybersecurity</button>
+                <button type="button" class="filter-btn" data-filter="ai">AI & Compute</button>
+                <button type="button" class="filter-btn" data-filter="dev">Dev & Tools</button>
+                <button type="button" class="filter-btn" data-filter="notion">Notion</button>
+                <button type="button" class="filter-btn" data-filter="lang">Languages</button>
             </div>
 
             <div class="certs-grid" id="certs-grid">
                 <!-- Cisco -->
-                <a href="https://www.credly.com/badges/48fcc13c-fc09-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
+                <a href="https://www.credly.com/badges/48fcc13c-fc09-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco" aria-label="Cisco Endpoint Security Certification">
+                    <div class="cert-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Endpoint Security</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/ea95911d-8a0f-439f-ab19-a15cbe9d4ccc/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-lock"></i></div>
+                <a href="https://www.credly.com/badges/ea95911d-8a0f-439f-ab19-a15cbe9d4ccc/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="cyber" data-company="Cisco" aria-label="Cisco Introduction to Cybersecurity Certification">
+                    <div class="cert-icon"><i class="fas fa-lock" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Introduction to Cybersecurity</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/d2dae157-4291-4d9b-90f5-77e2727bbef2/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                <a href="https://www.credly.com/badges/d2dae157-4291-4d9b-90f5-77e2727bbef2/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco" aria-label="Cisco Networking Devices and Configuration Certification">
+                    <div class="cert-icon"><i class="fas fa-network-wired" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Networking Devices & Config</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-terminal"></i></div>
+                <a href="https://www.credly.com/badges/0ed88f1b-8be9-4a24-9d79-f3630b23a173/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco" aria-label="Cisco Operating Systems Basics Certification">
+                    <div class="cert-icon"><i class="fas fa-terminal" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Operating Systems Basics</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/1c25a57d-ee63-4607-9ed8-e4c1d209c5c4/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-memory"></i></div>
+                <a href="https://www.credly.com/badges/1c25a57d-ee63-4607-9ed8-e4c1d209c5c4/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Cisco" aria-label="Cisco Computer Hardware Basics Certification">
+                    <div class="cert-icon"><i class="fas fa-memory" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Computer Hardware Basics</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/8500fb4b-3d21-4def-a6a6-7756efa7a85a/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-tower-broadcast"></i></div>
+                <a href="https://www.credly.com/badges/8500fb4b-3d21-4def-a6a6-7756efa7a85a/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Cisco" aria-label="Cisco Introduction to IoT Certification">
+                    <div class="cert-icon"><i class="fas fa-tower-broadcast" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Introduction to IoT</h3><p>Cisco Academy</p></div>
                 </a>
-                <a href="https://www.credly.com/badges/a30c7ec2-d20d-4214-9685-ce94268993f5/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Cisco">
-                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                <a href="https://www.credly.com/badges/a30c7ec2-d20d-4214-9685-ce94268993f5/public_url" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Cisco" aria-label="Cisco Introduction to Modern AI Certification">
+                    <div class="cert-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Introduction to Modern AI</h3><p>Cisco Academy</p></div>
                 </a>
 
                 <!-- EF SET -->
-                <a href="https://cert.efset.org/en/FSfjU3" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="lang" data-company="EF SET">
-                    <div class="cert-icon"><i class="fas fa-globe"></i></div>
+                <a href="https://cert.efset.org/en/FSfjU3" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="lang" data-company="EF SET" aria-label="EF SET English Certificate 78/100 C2 Proficient">
+                    <div class="cert-icon"><i class="fas fa-globe" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>EF SET 78/100 (C2 Proficient)</h3><p>EF SET</p></div>
                 </a>
 
                 <!-- Google -->
-                <a href="https://edu.google.accredible.com/0050227f-a195-495a-a2b4-9acfd849f131#acc.Ui4IORL2" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google">
+                <a href="https://edu.google.accredible.com/0050227f-a195-495a-a2b4-9acfd849f131#acc.Ui4IORL2" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google" aria-label="Google Gemini Certified University Student">
                     <div class="cert-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24">
+                        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill="#FFFFFF" d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z"/>
                         </svg>
                     </div>
                     <div class="cert-info"><h3>Gemini Certified University Student</h3><p>Google for Education</p></div>
                 </a>
-                <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/A4LJNM9B9I8R" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google">
-                    <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/A4LJNM9B9I8R" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="Google" aria-label="Google AI Professional Certificate">
+                    <div class="cert-icon"><i class="fa-brands fa-google" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Google AI Professional Certificate</h3><p>Google</p></div>
                 </a>
-                <a href="https://www.coursera.org/account/accomplishments/certificate/HMI0XKH8WBD5" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="Google">
-                    <div class="cert-icon"><i class="fa-brands fa-git-alt"></i></div>
+                <a href="https://www.coursera.org/account/accomplishments/certificate/HMI0XKH8WBD5" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="Google" aria-label="Google Introduction to Git and GitHub Certificate">
+                    <div class="cert-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Introduction to Git and GitHub</h3><p>Google</p></div>
                 </a>
-                <a href="https://www.coursera.org/account/accomplishments/verify/15YMGULD9GH3" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Google">
-                    <div class="cert-icon"><i class="fas fa-headset"></i></div>
+                <a href="https://www.coursera.org/account/accomplishments/verify/15YMGULD9GH3" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Google" aria-label="Google Technical Support Fundamentals Certificate">
+                    <div class="cert-icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Technical Support Fundamentals</h3><p>Google</p></div>
                 </a>
 
                 <!-- HackerRank -->
-                <a href="https://www.hackerrank.com/certificates/89f4c8e0456d" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="HackerRank">
-                    <div class="cert-icon"><i class="fa-brands fa-python"></i></div>
+                <a href="https://www.hackerrank.com/certificates/89f4c8e0456d" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="HackerRank" aria-label="HackerRank Python Basic Certificate">
+                    <div class="cert-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Python (Basic)</h3><p>HackerRank</p></div>
                 </a>
 
                 <!-- IBM -->
-                <a href="https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="IBM">
-                    <div class="cert-icon"><i class="fas fa-microchip"></i></div>
+                <a href="https://courses.cognitiveclass.ai/certificates/52b46ee682bb4f268e0a64bd71d82c4b" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="ai" data-company="IBM" aria-label="IBM Accelerating Deep Learning with GPUs Certificate">
+                    <div class="cert-icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Accelerating DL with GPUs</h3><p>IBM | Cognitive Class</p></div>
                 </a>
-                <a href="itibm.pdf" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="IBM">
-                    <div class="cert-icon"><i class="fas fa-server"></i></div>
+                <a href="itibm.pdf" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="IBM" aria-label="IBM IT Fundamentals Certificate">
+                    <div class="cert-icon"><i class="fas fa-server" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>IT Fundamentals</h3><p>IBM</p></div>
                 </a>
-                <a href="https://courses.cognitiveclass.ai/certificates/user/certificates" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="IBM">
-                    <div class="cert-icon"><i class="fa-brands fa-docker"></i></div>
+                <a href="https://courses.cognitiveclass.ai/certificates/user/certificates" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="dev" data-company="IBM" aria-label="IBM Docker Essentials Certificate">
+                    <div class="cert-icon"><i class="fa-brands fa-docker" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Docker Essentials</h3><p>IBM | Cognitive Class</p></div>
                 </a>
 
                 <!-- Microsoft -->
-                <a href="certificate.html" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Microsoft">
-                    <div class="cert-icon"><i class="fa-brands fa-microsoft"></i></div>
+                <a href="certificate.html" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="sysadmin" data-company="Microsoft" aria-label="Microsoft Applied Skills Administer Active Directory Domain Services">
+                    <div class="cert-icon"><i class="fa-brands fa-microsoft" aria-hidden="true"></i></div>
                     <div class="cert-info"><h3>Administer AD DS</h3><p>Microsoft Applied Skills</p></div>
                 </a>
 
                 <!-- Notion -->
-                <a href="https://verify.skilljar.com/c/r448pjhf3cb8" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="1">
+                <a href="https://verify.skilljar.com/c/r448pjhf3cb8" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="1" aria-label="Notion Essentials Badge">
                     <div class="cert-icon">
-                        <img src="https://api.iconify.design/simple-icons:notion.svg?color=white" alt="Notion" width="20" height="20" loading="lazy">
+                        <img src="icons/notion.svg" alt="Notion" width="20" height="20" loading="lazy" aria-hidden="true">
                     </div>
                     <div class="cert-info"><h3>Notion Essentials</h3><p>Notion Academy</p></div>
                 </a>
-                <a href="https://verify.skilljar.com/c/ixzcha7b5vuw" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="2">
+                <a href="https://verify.skilljar.com/c/ixzcha7b5vuw" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="2" aria-label="Notion Workflows Badge">
                     <div class="cert-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="3" y="3" width="6" height="6" rx="1.5"></rect>
                             <rect x="15" y="15" width="6" height="6" rx="1.5"></rect>
                             <path d="M6 9v3a3 3 0 0 0 3 3h6"></path>
@@ -936,17 +946,17 @@
                     </div>
                     <div class="cert-info"><h3>Notion Workflows</h3><p>Notion Academy</p></div>
                 </a>
-                <a href="https://verify.skilljar.com/c/5a38h8bb583z" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="3">
+                <a href="https://verify.skilljar.com/c/5a38h8bb583z" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="3" aria-label="Notion Advanced Badge">
                     <div class="cert-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                         </svg>
                     </div>
                     <div class="cert-info"><h3>Notion Advanced</h3><p>Notion Academy</p></div>
                 </a>
-                <a href="https://verify.skilljar.com/c/mnpiybjgn4hq" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="4">
+                <a href="https://verify.skilljar.com/c/mnpiybjgn4hq" target="_blank" rel="noopener" class="glass-panel cert-card" data-category="notion" data-company="Notion" data-rank="4" aria-label="Notion AI Badge">
                     <div class="cert-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#FFFFFF" />
                             <path d="M19 2L20.2 5.8L24 7L20.2 8.2L19 12L17.8 8.2L14 7L17.8 5.8L19 2Z" fill="#FFFFFF" opacity="0.85"/>
                         </svg>
@@ -1098,15 +1108,17 @@
                 const compB = (b.getAttribute('data-company') || '').toLowerCase();
                 if (compA !== compB) return compA.localeCompare(compB);
                 
-                const rankA = parseInt(a.getAttribute('data-rank') || '99');
-                const rankB = parseInt(b.getAttribute('data-rank') || '99');
+                const rankA = parseInt(a.getAttribute('data-rank') || '99', 10);
+                const rankB = parseInt(b.getAttribute('data-rank') || '99', 10);
                 if (rankA !== rankB) return rankA - rankB;
 
                 const titleA = a.querySelector('h3').textContent.toLowerCase();
                 const titleB = b.querySelector('h3').textContent.toLowerCase();
                 return titleA.localeCompare(titleB);
             });
-            certCards.forEach(card => certGrid.appendChild(card));
+            const fragment = document.createDocumentFragment();
+            certCards.forEach(card => fragment.appendChild(card));
+            certGrid.appendChild(fragment);
         }
 
         sortCertsByCompany();
