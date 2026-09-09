@@ -98,10 +98,11 @@
     
     <!-- External WebFont Preloads -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Inter Font (Non-Render-Blocking) -->
+    <!-- Non-Render-Blocking Stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -300,10 +301,36 @@
 
         .hero h1 {
             font-size: 4.2rem; font-weight: 900; letter-spacing: -0.05em; line-height: 1.1;
-            margin-bottom: 0.8rem; height: 1.1em; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 0.8rem; min-height: 1.15em; display: flex; align-items: center; justify-content: center;
         }
-        #typewriter::after { content: '|'; animation: blink 0.7s infinite; color: var(--text-accent); margin-left: 4px; }
-        @keyframes blink { 50% { opacity: 0; } }
+        .typewriter-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        #typewriter {
+            display: inline-block;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E0E0E0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            min-height: 1em;
+        }
+        .typewriter-caret {
+            display: inline-block;
+            width: 3.5px;
+            height: 0.85em;
+            background-color: var(--text-accent);
+            margin-left: 6px;
+            border-radius: 2px;
+            box-shadow: 0 0 12px rgba(255, 90, 95, 0.7);
+            animation: blinkCaret 0.8s infinite ease-in-out;
+            vertical-align: middle;
+        }
+        @keyframes blinkCaret {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 
         .hero p { max-width: 580px; font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 400; }
         
@@ -617,7 +644,7 @@
                     <img src="omar.webp" alt="Omar Sherif - Systems & Infrastructure Specialist" class="hero-avatar" width="140" height="140" fetchpriority="high" decoding="async">
                 </picture>
             </div>
-            <h1><span id="typewriter">Omar Sherif.</span></h1>
+            <h1><span class="typewriter-wrapper"><span id="typewriter">Omar Sherif.</span><span class="typewriter-caret" aria-hidden="true"></span></span></h1>
             <p>Computer Science student @ Ahram Canadian University (ACU).<br>Interested in systems, IT infrastructure, networking, and cybersecurity.</p>
             <div class="hero-actions">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -1159,8 +1186,11 @@
                         if (isMatch) {
                             card.classList.remove('hidden');
                             card.classList.add('filtering-in');
-                            void card.offsetWidth;
-                            card.classList.remove('filtering-in');
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    card.classList.remove('filtering-in');
+                                });
+                            });
                         } else {
                             card.classList.add('hidden');
                         }
@@ -1219,6 +1249,34 @@
 
         createDeckController('notion-stack', 'notion-prev-btn', 'notion-next-btn');
         createDeckController('project-stack', 'proj-prev-btn', 'proj-next-btn');
+
+        // Authentic Typewriter Effect (Performance & LCP Optimized)
+        const typewriterEl = document.getElementById('typewriter');
+        if (typewriterEl) {
+            const targetText = 'Omar Sherif.';
+            const startTypewriter = () => {
+                let idx = 0;
+                typewriterEl.textContent = '';
+                
+                function typeNextChar() {
+                    if (idx < targetText.length) {
+                        typewriterEl.textContent += targetText.charAt(idx);
+                        idx++;
+                        // Natural human typing rhythm (45ms to 95ms variance)
+                        const delay = targetText.charAt(idx - 1) === ' ' ? 110 : (55 + Math.random() * 40);
+                        setTimeout(typeNextChar, delay);
+                    }
+                }
+                typeNextChar();
+            };
+
+            // Start smoothly on page load so LCP / first paint is immediately recorded
+            if (document.readyState === 'complete') {
+                setTimeout(startTypewriter, 180);
+            } else {
+                window.addEventListener('load', () => setTimeout(startTypewriter, 180));
+            }
+        }
     </script>
 </body>
 </html>
