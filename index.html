@@ -93,8 +93,11 @@
     <!-- Hero Image -->
     <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
     
-    <!-- External WebFont Preloads -->
+    <!-- External WebFont Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Non-Render-Blocking Stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
@@ -121,7 +124,10 @@
             --container-w: 1120px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; 
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
             background-color: var(--bg-base);
@@ -131,6 +137,11 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        a, button, input, select, textarea {
+            touch-action: manipulation;
         }
 
         /* Apple Arabic Typography Override */
@@ -141,7 +152,8 @@
 
         /* Ambient Glow Canvas Layer */
         .bg-canvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; 
+            height: 100vh; height: 100dvh;
             z-index: -3; overflow: hidden; pointer-events: none;
             transform: translateZ(0);
         }
@@ -166,6 +178,7 @@
             display: flex; align-items: center;
         }
         .ayah-pill {
+            position: relative;
             background: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(24px) saturate(180%);
             -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -175,6 +188,9 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
             transition: all 0.3s var(--ease-spring);
             text-decoration: none; color: inherit;
+        }
+        .ayah-pill::before {
+            content: ''; position: absolute; top: -6px; bottom: -6px; left: -4px; right: -4px;
         }
         .ayah-pill:hover {
             border-color: var(--card-border-hover);
@@ -224,6 +240,9 @@
             border-radius: 50px; transition: color 0.3s var(--ease-spring);
             display: flex; align-items: center; gap: 8px;
         }
+        .nav-item::before {
+            content: ''; position: absolute; top: -5px; bottom: -5px; left: 0; right: 0;
+        }
         .nav-item:hover, .nav-item:focus-visible { color: #FFFFFF; outline: none; }
         .nav-item.active { color: #FFFFFF; }
 
@@ -262,7 +281,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 75vh; display: flex; flex-direction: column;
+            min-height: 75vh; min-height: 75dvh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             padding-top: 4.5rem;
         }
@@ -504,6 +523,9 @@
             border: none; font-size: 0.82rem; font-weight: 600; color: var(--text-muted);
             cursor: pointer; transition: color 0.3s var(--ease-spring);
         }
+        .filter-btn::before {
+            content: ''; position: absolute; top: -6px; bottom: -6px; left: 0; right: 0;
+        }
         .filter-btn:hover, .filter-btn.active {
             color: #FFFFFF;
         }
@@ -583,6 +605,11 @@
             .filter-indicator { display: none; }
             .filter-btn.active { background: var(--hero-accent-dim); }
         }
+
+        /* Below-the-fold rendering optimization */
+        #about { content-visibility: auto; contain-intrinsic-size: auto 600px; }
+        #certs { content-visibility: auto; contain-intrinsic-size: auto 750px; }
+        #contact { content-visibility: auto; contain-intrinsic-size: auto 300px; }
     </style>
 </head>
 <body>
@@ -1081,9 +1108,12 @@
         let isNavClickScrolling = false;
         let navClickTimeout = null;
 
+        const navDock = document.querySelector('.nav-dock');
         const navDockLinks = document.querySelectorAll('.nav-dock a');
-        navDockLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        if (navDock) {
+            navDock.addEventListener('click', (e) => {
+                const link = e.target.closest('a');
+                if (!link) return;
                 isNavClickScrolling = true;
                 navDockLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
@@ -1094,7 +1124,7 @@
                     isNavClickScrolling = false;
                 }, 800);
             });
-        });
+        }
 
         const sections = document.querySelectorAll('section[id]');
         const sectionObserver = new IntersectionObserver((entries) => {
@@ -1121,50 +1151,53 @@
             el.style.setProperty('--mouse-y', '50%');
         }
 
-        interactives.forEach(el => {
-            let cardRect = null;
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            interactives.forEach(el => {
+                let cardRect = null;
 
-            const updateRect = () => {
-                cardRect = el.getBoundingClientRect();
-            };
+                const updateRect = () => {
+                    cardRect = el.getBoundingClientRect();
+                };
 
-            el.addEventListener('pointerenter', updateRect, { passive: true });
-            window.addEventListener('scroll', updateRect, { passive: true });
-            window.addEventListener('resize', updateRect, { passive: true });
+                el.addEventListener('pointerenter', updateRect, { passive: true });
+                window.addEventListener('scroll', updateRect, { passive: true });
+                window.addEventListener('resize', updateRect, { passive: true });
 
-            el.addEventListener('mousemove', (e) => {
-                if (!cardRect) updateRect();
-                const clientX = e.clientX;
-                const clientY = e.clientY;
+                el.addEventListener('mousemove', (e) => {
+                    if (!cardRect) updateRect();
+                    const clientX = e.clientX;
+                    const clientY = e.clientY;
 
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        if (!cardRect) return;
-                        const x = clientX - cardRect.left;
-                        const y = clientY - cardRect.top;
-                        
-                        el.style.setProperty('--mouse-x', `${x}px`);
-                        el.style.setProperty('--mouse-y', `${y}px`);
-                        
-                        const rotateX = -((y - (cardRect.height / 2)) / 30);
-                        const rotateY = ((x - (cardRect.width / 2)) / 30);
-                        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-                        ticking = false;
-                    });
-                    ticking = true;
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            if (!cardRect) return;
+                            const x = clientX - cardRect.left;
+                            const y = clientY - cardRect.top;
+                            
+                            el.style.setProperty('--mouse-x', `${x}px`);
+                            el.style.setProperty('--mouse-y', `${y}px`);
+                            
+                            const rotateX = -((y - (cardRect.height / 2)) / 30);
+                            const rotateY = ((x - (cardRect.width / 2)) / 30);
+                            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+
+                el.addEventListener('mouseleave', () => resetGlassCard(el), { passive: true });
+                el.addEventListener('pointerleave', () => resetGlassCard(el), { passive: true });
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    interactives.forEach(resetGlassCard);
                 }
-            }, { passive: true });
+            });
+        }
 
-            el.addEventListener('mouseleave', () => resetGlassCard(el), { passive: true });
-            el.addEventListener('pointerleave', () => resetGlassCard(el), { passive: true });
-        });
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                interactives.forEach(resetGlassCard);
-            }
-        });
-
+        const filterBar = document.querySelector('.cert-filter-bar');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const certGrid = document.getElementById('certs-grid');
         const certCards = Array.from(document.querySelectorAll('.cert-card'));
@@ -1192,9 +1225,10 @@
         window.addEventListener('resize', refreshAllGliders, { passive: true });
 
         let filterTimeout = null;
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (btn.classList.contains('active')) return;
+        if (filterBar) {
+            filterBar.addEventListener('click', (e) => {
+                const btn = e.target.closest('.filter-btn');
+                if (!btn || btn.classList.contains('active')) return;
 
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
@@ -1236,7 +1270,7 @@
                     });
                 }, 160);
             });
-        });
+        }
 
 
 
