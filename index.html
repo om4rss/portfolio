@@ -93,11 +93,10 @@
     <!-- Hero Image -->
     <link rel="preload" as="image" href="omar.webp" type="image/webp" fetchpriority="high">
     
-    <!-- External WebFont Preconnect & Preload -->
+    <!-- External WebFont Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap">
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Non-Render-Blocking Stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'">
@@ -1061,20 +1060,30 @@
         const navIndicator = document.querySelector('.nav-indicator');
         const filterIndicator = document.querySelector('.filter-indicator');
 
+        let navGliderRaf = null;
         function updateNavGlider(activeItem) {
             if (!navIndicator || !activeItem) return;
-            const left = activeItem.offsetLeft;
-            const width = activeItem.offsetWidth;
-            navIndicator.style.left = `${left}px`;
-            navIndicator.style.width = `${width}px`;
+            if (navGliderRaf) cancelAnimationFrame(navGliderRaf);
+            navGliderRaf = requestAnimationFrame(() => {
+                const left = activeItem.offsetLeft;
+                const width = activeItem.offsetWidth;
+                navIndicator.style.left = `${left}px`;
+                navIndicator.style.width = `${width}px`;
+                navGliderRaf = null;
+            });
         }
 
+        let filterGliderRaf = null;
         function updateFilterGlider(activeBtn) {
             if (!filterIndicator || !activeBtn) return;
-            const left = activeBtn.offsetLeft;
-            const width = activeBtn.offsetWidth;
-            filterIndicator.style.left = `${left}px`;
-            filterIndicator.style.width = `${width}px`;
+            if (filterGliderRaf) cancelAnimationFrame(filterGliderRaf);
+            filterGliderRaf = requestAnimationFrame(() => {
+                const left = activeBtn.offsetLeft;
+                const width = activeBtn.offsetWidth;
+                filterIndicator.style.left = `${left}px`;
+                filterIndicator.style.width = `${width}px`;
+                filterGliderRaf = null;
+            });
         }
 
         function refreshAllGliders() {
@@ -1160,8 +1169,9 @@
                 };
 
                 el.addEventListener('pointerenter', updateRect, { passive: true });
-                window.addEventListener('scroll', updateRect, { passive: true });
-                window.addEventListener('resize', updateRect, { passive: true });
+                const invalidateRect = () => { cardRect = null; };
+                window.addEventListener('scroll', invalidateRect, { passive: true });
+                window.addEventListener('resize', invalidateRect, { passive: true });
 
                 el.addEventListener('mousemove', (e) => {
                     if (!cardRect) updateRect();
